@@ -11,7 +11,7 @@ const T = {
   name: 'Pizza Nera',                 // version B headline (suggested name)
   title: 'Pizzaween',                 // headline on A1–A3 and concept 3
   kicker: 'Halloween Special',
-  ingredients: 'Pumpkin cream, gorgonzola, fior di latte, guanciale & sun-dried tomatoes',
+  ingredients: 'Pumpkin cream, gorgonzola, fior di latte, crispy guanciale & sun-dried tomatoes',
   price: '28',                        // 'XX' prints a highlighted placeholder
   date: '31 October',
   tagline: 'Dare to go dark',
@@ -78,14 +78,14 @@ const dripOval = (c, gloss) => {
 };
 // Jack-o'-lantern price tag.
 const pumpkin = (label) => `<svg viewBox="0 0 120 108" width="100%">
-  <defs><radialGradient id="pk" cx="45%" cy="40%" r="70%"><stop offset="0" stop-color="#FFB050"/><stop offset=".6" stop-color="#F2862A"/><stop offset="1" stop-color="#C9561A"/></radialGradient></defs>
-  <path d="M60 22 C58 12 62 6 70 3" stroke="#3F5B2A" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <defs><radialGradient id="pk" cx="45%" cy="40%" r="70%"><stop offset="0" stop-color="#FF9F45"/><stop offset=".55" stop-color="#EC7016"/><stop offset="1" stop-color="#A9400B"/></radialGradient></defs>
+  <path d="M60 22 C58 12 62 6 70 3" stroke="#2F4520" stroke-width="7" stroke-linecap="round" fill="none"/>
   <path d="M68 10c8-6 18-4 22 2-8 0-14 2-20 6" fill="#4E7A33"/>
   <ellipse cx="22" cy="64" rx="18" ry="34" fill="url(#pk)"/><ellipse cx="98" cy="64" rx="18" ry="34" fill="url(#pk)"/>
   <ellipse cx="38" cy="62" rx="24" ry="40" fill="url(#pk)"/><ellipse cx="82" cy="62" rx="24" ry="40" fill="url(#pk)"/>
   <ellipse cx="60" cy="61" rx="27" ry="42" fill="url(#pk)"/>
-  <path d="M38 24 C30 50 30 80 38 100 M82 24 C90 50 90 80 82 100 M60 20 V103" stroke="#B4481A" stroke-width="1.4" fill="none" opacity=".55"/>
-  <text x="60" y="78" text-anchor="middle" font-family="Lilita One" font-size="34" fill="#FFE27A" stroke="#5A1E05" stroke-width="2.2" paint-order="stroke"
+  <path d="M38 24 C30 50 30 80 38 100 M82 24 C90 50 90 80 82 100 M24 34 C14 54 14 78 24 96 M96 34 C106 54 106 78 96 96" stroke="#8A3008" stroke-width="1.8" fill="none" opacity=".5"/>
+  <text x="60" y="78" text-anchor="middle" font-family="Lilita One" font-size="35" fill="#F8F1DF" stroke="#3A0F02" stroke-width="3.2" stroke-linejoin="round" paint-order="stroke"
     transform="translate(60 0) scale(.9 1) translate(-60 0)">${label}</text></svg>`;
 const grain = (o) => `<svg style="position:absolute;inset:0;opacity:${o};mix-blend-mode:overlay;pointer-events:none" width="100%" height="100%">
   <filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"/>
@@ -160,7 +160,7 @@ h1 { position: absolute; left: 0; right: 0; top: 22mm; text-align: center; color
   <div class="date${L === 3 ? ' tag' : ''}"><span>${esc(T.date)}</span></div>
   ${batsHtml.slice(0, 6).join('')}
   <svg class="arc" viewBox="0 0 297 80"><defs><path id="arc" d="M6,78 Q148.5,4 291,78"/></defs>
-    <text font-family="Lilita One" font-size="7.9" fill="${C.cream}" text-anchor="middle" letter-spacing=".1">
+    <text font-family="Lilita One" font-size="7.4" fill="${C.cream}" text-anchor="middle" letter-spacing=".1">
     <textPath href="#arc" startOffset="50%">${esc(ingredients)}</textPath></text></svg>
   <div class="pale${L > 1 ? ' moon' : ''}${L === 3 ? ' glow' : ''}">${L === 3 ? `
     <i class="crater" style="left:52mm;top:30mm;width:22mm;height:22mm"></i><i class="crater" style="left:330mm;top:40mm;width:30mm;height:30mm"></i>
@@ -353,7 +353,7 @@ h1 { position: absolute; left: 62mm; width: 222mm; top: 20mm; text-align: center
 <div class="page">
   <div class="dots-tl">${dots(5, 5, 5.4, .75, C.cream)}</div><div class="dots-r">${dots(2, 10, 5.4, .75, C.cream)}</div><div class="xs">× × × ×</div>
   <div class="oval"></div><h1>${esc(T.title)}<br>Special</h1>
-  <div class="cloud">${cloud}<p>Boo! I came back for the guanciale!</p></div>
+  <div class="cloud">${cloud}<p>Boo! I came back for the crispy guanciale!</p></div>
   <div class="pale"></div>
   <div class="ghost">${ghost}</div>
   <img class="pizza" src="../photos/pizza.png">
