@@ -231,7 +231,139 @@ h1 { position: absolute; left: 0; right: 0; top: 44mm; text-align: center; font-
 </div></body></html>`;
 }
 
-const POSTERS = { a1: () => posterA(1), a2: () => posterA(2), a3: () => posterA(3), b: posterB };
+// ============================================================================
+// Concepts 1–3 — three different directions inside the same promo-poster language
+// (Lilita title, cream + red, the oval, dots and ×, round price badge).
+// ============================================================================
+const ingredientList = () => T.ingredients.replace(' & ', ', ').split(', ');
+
+// 1 · "Menu card": inverted colours, pizza bleeding off the edge, ingredients as a list.
+function concept1() {
+  const C = { red: '#C40001', cream: '#F8F1DF', paper: '#FBF6EA', oval: '#F2902E', ink: '#1A0B07' };
+  const css = `
+body { background: ${C.paper}; font-family: 'Lilita One'; color: ${C.red} }
+.page { background: radial-gradient(ellipse 70% 50% at 70% 55%, #fff, ${C.paper} 60%, #F1E7D2) }
+.dots { position: absolute; left: 14mm; top: 14mm } .xs { position: absolute; right: 16mm; top: 15mm; font-family: 'Poppins'; font-weight: 700; font-size: 8mm; letter-spacing: 4.5mm; color: ${C.red} }
+.kick { position: absolute; left: 16mm; top: 44mm; font-size: 9mm; letter-spacing: .08em; color: ${C.ink}; transform-origin: left; transform: scaleX(.9) }
+h1 { position: absolute; left: 14mm; top: 56mm; font-weight: 400; font-size: 58mm; line-height: .82; transform-origin: left top; transform: scaleX(.82); color: ${C.red} }
+.oval { position: absolute; left: 6mm; top: 104mm; width: 150mm; height: 52mm; border-radius: 50%; background: ${C.oval}; transform: rotate(-4deg) }
+.pizza { position: absolute; left: 92mm; top: 150mm; width: 300mm; filter: drop-shadow(-4mm 8mm 8mm rgba(60,20,0,.35)) brightness(1.06) saturate(1.1) }
+.list { position: absolute; left: 16mm; top: 176mm; width: 90mm }
+.list h3 { font-weight: 400; font-size: 7mm; color: ${C.ink}; letter-spacing: .06em; margin-bottom: 3mm }
+.list div { font-size: 8.8mm; line-height: 1.12; padding: 2.4mm 0; border-bottom: .5mm dashed rgba(196,0,1,.35); display: flex; align-items: center; gap: 3mm }
+.list div::before { content: ''; width: 3mm; height: 3mm; border-radius: 50%; background: ${C.oval}; flex: none }
+.price { position: absolute; left: 22mm; top: 300mm; width: 56mm; height: 56mm; border-radius: 50%; background: ${C.red}; color: ${C.cream};
+  display: grid; place-items: center; text-align: center; box-shadow: 0 0 0 1.6mm ${C.paper}, 0 0 0 3.2mm ${C.red} }
+.price b { font-weight: 400; font-size: 23mm; line-height: .9; display: block; transform: scaleX(.88) } .price small { font-size: 5mm; letter-spacing: .1em }
+.bat { position: absolute } .bat svg { width: 100%; display: block }
+.band { position: absolute; left: 0; right: 0; bottom: 0; height: 30mm; background: ${C.red}; color: ${C.cream}; display: flex; align-items: center; justify-content: space-between; padding: 0 16mm }
+.band::before { content: ''; position: absolute; left: 0; right: 0; top: -6mm; height: 6mm; background: repeating-conic-gradient(${C.red} 0 25%, ${C.paper} 0 50%) 0 0 / 6mm 6mm }
+.band span { font-size: 11mm; transform-origin: left; transform: scaleX(.88); letter-spacing: .04em } .band em { font-style: normal; font-size: 6mm; color: ${C.oval}; letter-spacing: .14em }`;
+  const bats = [[150, 40, 24, -10], [182, 58, 13, 8], [205, 34, 10, -4], [252, 92, 18, 12], [126, 150, 11, -8]];
+  return head('Halloween Special — Concept 1', css) + `
+<div class="page">
+  <div class="dots">${dots(5, 3, 5.4, .8, C.red)}</div><div class="xs">× × × ×</div>
+  ${bats.map(([x, y, w, r]) => `<div class="bat" style="left:${x}mm;top:${y}mm;width:${w}mm;transform:rotate(${r}deg)">${bat(C.ink)}</div>`).join('')}
+  <div class="kick">Only for Halloween</div>
+  <div class="oval"></div>
+  <h1>Halloween<br>Special</h1>
+  <img class="pizza" src="../photos/pizza.png">
+  <div class="list"><h3>What's on it</h3>${ingredientList().map((x) => `<div>${esc(x[0].toUpperCase() + x.slice(1))}</div>`).join('')}</div>
+  <div class="price"><div><b>$${price(T.price)}</b></div></div>
+  <div class="band"><span>${esc(T.date)}</span><em>il Mercato Centrale</em></div>
+</div></body></html>`;
+}
+
+// 2 · "Big type": a giant HALLOWEEN behind the pizza, starburst price, black ingredient band.
+function concept2() {
+  const C = { red: '#C40001', cream: '#F8F1DF', oval: '#F2902E', ink: '#160806' };
+  const star = (n, ro, ri) => Array.from({ length: n * 2 }, (_, i) => {
+    const r = i % 2 ? ri : ro, a = (Math.PI * i) / n - Math.PI / 2;
+    return `${(50 + r * Math.cos(a)).toFixed(1)},${(50 + r * Math.sin(a)).toFixed(1)}`; }).join(' ');
+  const css = `
+body { background: ${C.red}; font-family: 'Lilita One' }
+.page { background: radial-gradient(ellipse 80% 55% at 50% 55%, #D80B08, ${C.red} 55%, #A30000) }
+.dots-tl { position: absolute; left: 9mm; top: 9mm } .dots-r { position: absolute; right: 8mm; top: 150mm }
+.xs { position: absolute; right: 16mm; top: 12mm; color: ${C.cream}; font-family: 'Poppins'; font-weight: 600; font-size: 8mm; letter-spacing: 4.5mm }
+.big { position: absolute; left: 0; right: 0; top: 18mm; text-align: center; color: ${C.cream}; font-weight: 400; font-size: 106mm; line-height: .8;
+  transform: scaleX(.78); letter-spacing: -.01em; text-shadow: 1.2mm 1.2mm 0 ${C.oval}, 2.4mm 2.4mm 0 ${C.ink} }
+.pizza { position: absolute; left: 50%; top: 182mm; width: 300mm; margin-left: -150mm; filter: drop-shadow(0 8mm 9mm rgba(0,0,0,.55)) brightness(1.07) saturate(1.1) }
+.pill { position: absolute; left: 50%; top: 326mm; transform: translateX(-50%) rotate(-3deg); background: ${C.oval}; color: ${C.ink}; padding: 2mm 16mm 3mm;
+  border-radius: 20mm; font-size: 17mm; box-shadow: 0 2mm 0 ${C.ink} }
+.pill span { display: inline-block; transform: scaleX(.86) }
+.burst { position: absolute; right: 12mm; top: 160mm; width: 68mm; transform: rotate(12deg); filter: drop-shadow(0 2mm 0 ${C.ink}) }
+.burst .t { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: ${C.red}; line-height: .85 }
+.burst .t b { font-weight: 400; font-size: 20mm; display: block; transform: scaleX(.88) } .burst .t small { font-size: 5.6mm; letter-spacing: .08em; color: ${C.ink} }
+.band { position: absolute; left: 0; right: 0; bottom: 0; height: 52mm; background: ${C.ink}; color: ${C.cream}; text-align: center; padding-top: 8mm }
+.band::before { content: ''; position: absolute; left: 0; right: 0; top: -7mm; height: 7mm; background: repeating-conic-gradient(${C.ink} 0 25%, ${C.cream} 0 50%) 0 0 / 7mm 7mm }
+.band .ing { font-size: 9.2mm; line-height: 1.25; padding: 0 16mm; text-wrap: balance } .band .ing i { color: ${C.oval}; font-style: normal; padding: 0 2mm }
+.band .d { margin-top: 5mm; font-size: 6.4mm; letter-spacing: .3em; color: ${C.oval} }
+.bat { position: absolute } .bat svg { width: 100%; display: block }`;
+  const bats = [[18, 176, 22, -14], [44, 192, 11, 8], [250, 148, 12, 10]];
+  return head('Halloween Special — Concept 2', css) + `
+<div class="page">
+  <div class="dots-tl">${dots(5, 5, 5.4, .75, C.cream)}</div><div class="dots-r">${dots(2, 6, 5.4, .75, C.cream)}</div><div class="xs">× × × ×</div>
+  <div class="big">HALLO<br>WEEN</div>
+  ${bats.map(([x, y, w, r]) => `<div class="bat" style="left:${x}mm;top:${y}mm;width:${w}mm;transform:rotate(${r}deg)">${bat(C.ink)}</div>`).join('')}
+  <img class="pizza" src="../photos/pizza.png">
+  <div class="pill"><span>Special</span></div>
+  <div class="burst"><svg viewBox="0 0 100 100"><polygon points="${star(14, 50, 41)}" fill="${C.oval}"/><circle cx="50" cy="50" r="36" fill="${C.cream}"/></svg>
+    <div class="t"><div><small>only</small><b>$${price(T.price)}</b></div></div></div>
+  <div class="band"><div class="ing">${ingredientList().map((x) => esc(x).replace(/ /g, '&nbsp;')).join('<i>·</i> ')}</div><div class="d">${esc(T.date).toUpperCase()}</div></div>
+</div></body></html>`;
+}
+
+// 3 · "Boo!": a cartoon ghost peeking from behind the pizza, speech bubble, the original light-blue oval.
+function concept3() {
+  const C = { red: '#C40001', cream: '#F8F1DF', blue: '#B9CBD6', bluedk: '#6F8797', pale: '#F0EEE6', oval: '#F2902E', ink: '#1A0B07' };
+  const ghost = `<svg viewBox="0 0 120 140" width="100%">
+    <path d="M14 70 C14 30 36 8 60 8 C84 8 106 30 106 70 V122 C100 134 92 134 86 124 C80 134 72 136 66 124 C60 136 50 136 46 124 C40 134 30 136 24 124 C18 132 14 128 14 122 Z" fill="#FFFDF8"/>
+    <path d="M14 82 C4 78 2 66 8 60 C12 66 14 70 18 72 M106 82 C116 78 118 66 112 60 C108 66 106 70 102 72" fill="#FFFDF8"/>
+    <path d="M86 20 C96 28 102 44 102 64" stroke="#E4E1DA" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>
+    <ellipse cx="45" cy="60" rx="7" ry="10" fill="${C.ink}"/><ellipse cx="75" cy="60" rx="7" ry="10" fill="${C.ink}"/>
+    <circle cx="47" cy="56" r="2.6" fill="#fff"/><circle cx="77" cy="56" r="2.6" fill="#fff"/>
+    <ellipse cx="34" cy="76" rx="7" ry="4" fill="#F7A6A6" opacity=".8"/><ellipse cx="86" cy="76" rx="7" ry="4" fill="#F7A6A6" opacity=".8"/>
+    <ellipse cx="60" cy="82" rx="7" ry="9" fill="${C.ink}"/><ellipse cx="60" cy="86" rx="4" ry="4" fill="#E2504A"/></svg>`;
+  const cloud = `<svg viewBox="0 0 160 110" width="100%"><g fill="#fff">
+    <circle cx="48" cy="52" r="30"/><circle cx="82" cy="40" r="34"/><circle cx="116" cy="54" r="28"/><circle cx="66" cy="70" r="26"/><circle cx="100" cy="72" r="26"/>
+    <circle cx="30" cy="92" r="8"/><circle cx="16" cy="104" r="5"/></g></svg>`;
+  const css = `
+body { background: ${C.red}; font-family: 'Lilita One' }
+.page { background: ${C.red} }
+.dots-tl { position: absolute; left: 9mm; top: 9mm } .dots-r { position: absolute; right: 7mm; top: 26mm }
+.xs { position: absolute; left: 16mm; top: 46mm; color: ${C.cream}; font-family: 'Poppins'; font-weight: 600; font-size: 8mm; letter-spacing: 4.5mm }
+.oval { position: absolute; left: 60mm; top: 30mm; width: 222mm; height: 74mm; border-radius: 50%; background: ${C.blue}; transform: rotate(-5deg) }
+h1 { position: absolute; left: 62mm; width: 222mm; top: 20mm; text-align: center; color: ${C.cream}; font-weight: 400; font-size: 46mm; line-height: .86;
+  transform: scaleX(.84) rotate(-5deg); text-shadow: 0 1mm 0 rgba(0,0,0,.15) }
+.arc { position: absolute; left: 0; top: 118mm; width: ${W}mm; height: 80mm }
+.pale { position: absolute; left: 50%; top: 262mm; width: 420mm; height: 420mm; margin-left: -210mm; border-radius: 50%; background: ${C.pale} }
+.ghost { position: absolute; right: 12mm; top: 150mm; width: 98mm; transform: rotate(12deg); filter: drop-shadow(0 2mm 3mm rgba(0,0,0,.25)) }
+.cloud { position: absolute; left: 44mm; top: 98mm; width: 144mm }
+.cloud svg { transform: scaleX(-1) }
+.cloud p { position: absolute; left: 30mm; right: 26mm; top: 38mm; text-align: center; font-size: 9.6mm; line-height: 1.02; color: ${C.bluedk}; transform: rotate(-3deg) }
+.pizza { position: absolute; left: 50%; top: 192mm; width: 272mm; margin-left: -150mm; filter: drop-shadow(0 6mm 7mm rgba(0,0,0,.4)) brightness(1.07) saturate(1.1) }
+.price { position: absolute; left: 16mm; top: 322mm; width: 58mm; height: 58mm; border-radius: 50%; background: ${C.red}; color: ${C.cream}; display: grid; place-items: center; text-align: center;
+  box-shadow: 0 0 0 1.6mm ${C.pale} }
+.price small { font-size: 7.5mm; display: block } .price b { font-weight: 400; font-size: 20mm; line-height: .9; display: block; transform: scaleX(.9) }
+.date { position: absolute; right: 18mm; top: 390mm; color: ${C.red}; font-size: 10mm; transform-origin: right; transform: scaleX(.9) }
+.ingr { position: absolute; right: 18mm; top: 366mm; width: 190mm; text-align: right; color: ${C.ink}; font-size: 8mm; line-height: 1.15 }
+.checks { position: absolute; left: 18mm; bottom: 14mm; width: 54mm; height: 8mm; background: repeating-conic-gradient(${C.blue} 0 25%, transparent 0 50%) 0 0 / 4mm 4mm }`;
+  return head('Halloween Special — Concept 3', css) + `
+<div class="page">
+  <div class="dots-tl">${dots(5, 5, 5.4, .75, C.cream)}</div><div class="dots-r">${dots(2, 10, 5.4, .75, C.cream)}</div><div class="xs">× × × ×</div>
+  <div class="oval"></div><h1>Halloween<br>Special</h1>
+  <div class="cloud">${cloud}<p>Boo! I came back for the guanciale!</p></div>
+  <div class="pale"></div>
+  <div class="ghost">${ghost}</div>
+  <img class="pizza" src="../photos/pizza.png">
+  <div class="price"><div><small>For only</small><b>$${price(T.price)}</b></div></div>
+  <div class="ingr">${esc(T.ingredients)}</div>
+  <div class="date">${esc(T.date)}</div>
+  <div class="checks"></div>
+</div></body></html>`;
+}
+
+const POSTERS = { a1: () => posterA(1), a2: () => posterA(2), a3: () => posterA(3), b: posterB, 'concept-1': concept1, 'concept-2': concept2, 'concept-3': concept3 };
 
 (async () => {
   const want = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(POSTERS);
