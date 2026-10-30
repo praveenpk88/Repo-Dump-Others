@@ -1,0 +1,112 @@
+<!doctype html><html><head><meta charset="utf-8"><title>La Pizza Napoletana — Variant C</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+@page { size: 420mm 297mm; margin: 0 }
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html, body { width: 420mm; height: 297mm }
+body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-kerning: normal }
+.page { width: 420mm; height: 297mm; position: relative; overflow: hidden }
+.tbc { background: #ffe27a; color: #5a3d00; padding: 0 .25em; border-radius: .2em; font-weight: 700 }
+.leaf { width: 1em; height: 1em; vertical-align: -.12em; display: inline-block }
+img { display: block }
+
+body { background: #F7EFE0; color: #271E1A; font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 14 }
+.page { display: grid; grid-template-columns: 92mm 1fr }
+.brand { background: #B0241C; color: #FBF1DF; padding: 13mm 10mm 10mm 12mm; display: flex; flex-direction: column; position: relative;
+  background-image: radial-gradient(ellipse at 0% 0%, rgba(255,255,255,.1), transparent 55%), radial-gradient(ellipse at 100% 100%, rgba(0,0,0,.18), transparent 60%) }
+.brand::after { content: ''; position: absolute; top: 0; bottom: 0; right: 0; width: 4mm;
+  background: repeating-conic-gradient(#F7EFE0 0 25%, #B0241C 0 50%) 0 0 / 4mm 4mm }
+h1 { font-weight: 900; font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1; font-size: 14.6mm; line-height: .86; letter-spacing: -.01em }
+.by { font-family: 'Mrs Saint Delafield'; font-size: 12mm; line-height: 1; color: #F6D9A8; margin: 1.5mm 0 0 14mm; white-space: nowrap }
+.intro { font-size: 3.5mm; line-height: 1.45; margin-top: 7mm; font-variation-settings: 'opsz' 14 }
+.intro b { display: block; margin-top: 2.5mm; font-weight: 600; font-style: italic; color: #F6D9A8 }
+.how { margin-top: 7mm; border-top: .35mm solid rgba(251,241,223,.4); padding-top: 4mm; font-size: 3.1mm; line-height: 1.4 }
+.how h4, .notes h4 { font-weight: 800; font-size: 3.4mm; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 1.2mm; font-variation-settings: 'opsz' 14 }
+.how ol { list-style: none } .how li { display: flex; gap: 2.5mm; margin: .9mm 0 }
+.how li b { width: 5mm; height: 5mm; border-radius: 50%; border: .35mm solid #FBF1DF; display: grid; place-items: center; font-size: 2.6mm; flex: none }
+.notes { font-size: 2.85mm; line-height: 1.38 }
+.notes > div { margin-top: 3.5mm }
+.stampwrap { margin: auto 0; align-self: center; opacity: .9 }
+main { padding: 11mm 12mm 0 11mm; position: relative }
+.tiers, .row { display: grid; grid-template-columns: 1.25fr 1fr 1fr; column-gap: 7mm }
+.tiers > div { font-weight: 800; font-size: 5.2mm; letter-spacing: .16em; text-transform: uppercase; color: #B0241C; padding-bottom: 2mm;
+  border-bottom: .7mm solid #B0241C; display: flex; justify-content: space-between; align-items: baseline; font-variation-settings: 'opsz' 14 }
+.tiers > div small { font-weight: 400; font-style: italic; font-size: 3mm; letter-spacing: 0; text-transform: none; color: #8a735a }
+.row { border-bottom: .3mm solid #D6C29F; height: 19.4mm; align-items: center }
+.c { min-width: 0 }
+.nm { display: flex; align-items: baseline; gap: 2.4mm; white-space: nowrap }
+.nm span { font-weight: 700; font-size: 5.3mm; letter-spacing: -.005em; font-variation-settings: 'opsz' 48, 'SOFT' 50 }
+.t0 .nm span { color: #271E1A } .t1 .nm span { color: #861A14 } .t2 .nm span { color: #B0241C; font-weight: 900 }
+.pr { font-weight: 600; font-size: 4.2mm; color: #B0241C }
+.nm .leaf { font-size: 3.6mm; align-self: center }
+.ds { font-size: 3.35mm; line-height: 1.28; margin-top: .4mm; color: #3d322b }
+.nt { font-size: 2.9mm; font-style: italic; color: #3F5E38; margin-top: .3mm }
+.extras { display: grid; grid-template-columns: .72fr 1.28fr; column-gap: 9mm; margin-top: 7mm }
+.extras h3 { font-weight: 800; font-size: 4.6mm; letter-spacing: .16em; text-transform: uppercase; color: #B0241C; border-bottom: .7mm solid #B0241C;
+  padding-bottom: 1.5mm; margin-bottom: 1.5mm; font-variation-settings: 'opsz' 14 }
+.extras .list { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6mm 6mm }
+.extras .list.three { grid-template-columns: 1fr 1fr 1fr }
+.extras .nm span { font-size: 4.5mm }
+footer { position: absolute; left: 11mm; right: 12mm; bottom: 5mm; display: flex; justify-content: space-between; font-size: 3mm; letter-spacing: .4em;
+  text-transform: uppercase; color: #3F5E38; font-weight: 600 }
+</style></head><body>
+<div class="page">
+  <section class="brand">
+    <h1>La Pizza<br>Napoletana</h1><div class="by">by Samuele Ferro</div>
+    <div class="intro">At the heart of every pizza is Samuele’s passion: the dough. Combining elements of traditional Napoletana and contemporanea pizza-making, he continually experiments with flour, fermentation and hydration to create his perfect dough.<b>Curious? Ask Samuele what flour and hydration he’s using today.</b></div>
+    <div class="how"><h4>How to read the menu</h4><ol>
+      <li><b>1</b><span><strong>Classic</strong>: the flavour as Naples makes it.</span></li>
+      <li><b>2</b><span><strong>Level up</strong>: the same pizza with a twist.</span></li>
+      <li><b>3</b><span><strong>Go all in</strong>: loaded with more on top.</span></li></ol></div>
+    <div class="stampwrap">
+<svg class="stamp" width="34mm" height="34mm" viewBox="0 0 200 200">
+  <defs><path id="sc-F6D9A8" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+  <circle cx="100" cy="100" r="96" fill="none" stroke="#F6D9A8" stroke-width="2.5"/>
+  <circle cx="100" cy="100" r="58" fill="none" stroke="#F6D9A8" stroke-width="1.2"/>
+  <text font-family="Cinzel" font-size="14.5" font-weight="600" fill="#FBF1DF">
+    <textPath href="#sc-F6D9A8" startOffset="0" textLength="458" lengthAdjust="spacing">LA PIZZA NAPOLETANA · BY SAMUELE FERRO ·</textPath>
+  </text>
+  <text x="100" y="117" text-anchor="middle" font-family="Cormorant Garamond" font-weight="700" font-size="54" fill="#FBF1DF">LPN</text>
+</svg></div>
+    <div class="notes">
+      <div><h4><svg class="leaf" viewBox="0 0 24 24" aria-label="vegan"><path fill="#FBF1DF" d="M20 3C9 3 4 9 4 15c0 2 .6 3.6 1.4 4.8L3 22l1.4 1.4 2.5-2.4C8.1 21.6 9.6 22 11 22c6 0 10-6 9-19zM8 18c2-5 5-8 9-10-3 3-6 6-9 10z"/></svg> Vegan / can be made vegan</h4>Ask our team and we’ll make it happen.</div>
+      <div><h4>GF bases available</h4>Our gluten-free dough is made in-house by Samuele, who holds a Coeliac Australia certificate. All pizzas are cooked in the same oven as our regular bases, so we cannot guarantee the absence of gluten or cross-contact.</div>
+      <div style="opacity:.85;letter-spacing:.12em;text-transform:uppercase;font-size:2.6mm">il Mercato Centrale · Melbourne</div>
+    </div>
+  </section>
+  <main>
+    <div class="tiers"><div>Classic<small>the original</small></div><div>Level up<small>a little more</small></div><div>Go all in<small>everything on it</small></div></div>
+    <div class="row"><div class="c t0"><div class="nm"><span>Margherita</span><b class="pr">22</b></div>
+      <div class="ds">San Marzano tomato, Napoli-cut fior di latte, basil &amp; EVOO</div></div><div class="c t1"><div class="nm"><span>Bufalina</span><b class="pr">26</b></div>
+      <div class="ds">+ Buffalo mozzarella</div></div><div class="c t2"><div class="nm"><span>Prosciutto</span><b class="pr">30</b></div>
+      <div class="ds">+ Prosciutto &amp; buffalo mozzarella</div></div></div><div class="row"><div class="c t0"><div class="nm"><span>Marinara</span><b class="pr">18</b><svg class="leaf" viewBox="0 0 24 24" aria-label="vegan"><path fill="#3F5E38" d="M20 3C9 3 4 9 4 15c0 2 .6 3.6 1.4 4.8L3 22l1.4 1.4 2.5-2.4C8.1 21.6 9.6 22 11 22c6 0 10-6 9-19zM8 18c2-5 5-8 9-10-3 3-6 6-9 10z"/></svg></div>
+      <div class="ds">San Marzano tomato, oregano &amp; garlic oil</div></div><div class="c t1"><div class="nm"><span>Acchugina</span><b class="pr">20</b></div>
+      <div class="ds">+ Anchovies</div></div><div class="c t2"><div class="nm"><span>Napoletana</span><b class="pr">25</b></div>
+      <div class="ds">+ Anchovies, olives &amp; mozzarella</div></div></div><div class="row"><div class="c t0"><div class="nm"><span>Salsiccia e Patate</span><b class="pr">28</b></div>
+      <div class="ds">Creamy base of Napoli-cut fior di latte, salsiccia &amp; herb-roasted potatoes</div></div><div class="c t1"><div class="nm"><span>Fungaiola</span><b class="pr">29</b></div>
+      <div class="ds">+ Mushroom</div></div><div class="c t2"><div class="nm"><span>Sotto Bosco</span><b class="pr"><span class="tbc">XX</span></b></div>
+      <div class="ds">+ Mushroom &amp; ‘Flavour Bomb’ truffle cheddar</div></div></div><div class="row"><div class="c t0"><div class="nm"><span>La Porcona Rossa</span><b class="pr">30</b></div>
+      <div class="ds">San Marzano tomato, mozzarella, salsiccia, ham &amp; salame</div></div><div class="c t1"><div class="nm"><span>La Porcona Bianca</span><b class="pr">30</b></div>
+      <div class="ds">Switch it up with a creamy mozzarella base</div></div><div class="c t2"><div class="nm"><span>Porcaccia</span><b class="pr">32</b></div>
+      <div class="ds">+ Crispy guanciale &amp; ‘Flavour Bomb’ truffle cheddar</div></div></div><div class="row"><div class="c t0"><div class="nm"><span>Cotto e Funghi</span><b class="pr">26</b></div>
+      <div class="ds">San Marzano tomato, mozzarella, ham &amp; mushroom</div><div class="nt">Swap the ham for chicken</div></div><div class="c t1"><div class="nm"><span>Capricciosa</span><b class="pr">30</b></div>
+      <div class="ds">+ Artichoke &amp; olives</div></div><div class="c t2"><div class="nm"><span>Capricchuga</span><b class="pr"><span class="tbc">XX</span></b></div>
+      <div class="ds">+ Anchovies</div></div></div><div class="row"><div class="c t0"><div class="nm"><span>Diavola</span><b class="pr">28</b></div>
+      <div class="ds">San Marzano tomato, mozzarella, salame &amp; olives</div></div><div class="c t1"><div class="nm"><span>Lucifero</span><b class="pr">30</b></div>
+      <div class="ds">+ ’Nduja</div></div><div class="c t2"><div class="nm"><span>Purgatorio</span><b class="pr"><span class="tbc">XX</span></b></div>
+      <div class="ds">+ ’Nduja &amp; stracciatella</div></div></div><div class="row"><div class="c t0"><div class="nm"><span>Gamberi</span><b class="pr">28</b></div>
+      <div class="ds">Zucchini cream, cherry tomato, mozzarella, parsley &amp; prawns</div></div><div class="c t1"><div class="nm"><span>Spishrimps</span><b class="pr">30</b></div>
+      <div class="ds">Stracciatella replaces mozzarella, + ’nduja</div></div><div class="c empty"></div></div><div class="row"><div class="c t0"><div class="nm"><span>Mortadella</span><b class="pr">30</b></div>
+      <div class="ds">Creamy mozzarella base, mortadella, stracciatella &amp; pistachio</div></div><div class="c t1"><div class="nm"><span>Bombadella</span><b class="pr"><span class="tbc">XX</span></b></div>
+      <div class="ds">+ ‘Flavour Bomb’ truffle cheddar</div></div><div class="c empty"></div></div><div class="row"><div class="c t0"><div class="nm"><span>Hamsorry</span><b class="pr">26</b></div>
+      <div class="ds">San Marzano tomato, mozzarella, ham &amp; pineapple</div></div><div class="c t1"><div class="nm"><span>Hambetter</span><b class="pr">28</b></div>
+      <div class="ds">Go bianca + guanciale</div></div><div class="c empty"></div></div><div class="row"><div class="c t0"><div class="nm"><span>Vegetariana</span><b class="pr">27</b></div>
+      <div class="ds">Zucchini cream, artichoke, mozzarella, potato, capsicum &amp; eggplant</div><div class="nt">Add chicken +XX</div></div><div class="c empty"></div><div class="c empty"></div></div><div class="row"><div class="c t0"><div class="nm"><span>Quattro Formaggi</span><b class="pr"><span class="tbc">XX</span></b></div>
+      <div class="ds">Mozzarella, scamorza, parmesan &amp; ‘Flavour Bomb’ truffle cheddar</div></div><div class="c empty"></div><div class="c empty"></div></div>
+    <div class="extras">
+      <div><h3>Focaccia</h3><div class="list"><div class="c"><div class="nm"><span>Focaccia</span><b class="pr">14</b><svg class="leaf" viewBox="0 0 24 24" aria-label="vegan"><path fill="#3F5E38" d="M20 3C9 3 4 9 4 15c0 2 .6 3.6 1.4 4.8L3 22l1.4 1.4 2.5-2.4C8.1 21.6 9.6 22 11 22c6 0 10-6 9-19zM8 18c2-5 5-8 9-10-3 3-6 6-9 10z"/></svg></div><div class="ds">Fluffy dough, herbs &amp; EVOO</div></div><div class="c"><div class="nm"><span>Cheesy Garlic</span><b class="pr">16</b></div><div class="ds">+ Mozzarella &amp; garlic oil</div></div></div></div>
+      <div><h3>Dolce</h3><div class="list three"><div class="c"><div class="nm"><span>Nutella Pizza</span><b class="pr"><span class="tbc">XX</span></b></div><div class="ds">Nutella &amp; powdered sugar</div></div><div class="c"><div class="nm"><span>Nutella + Pistachio</span><b class="pr"><span class="tbc">XX</span></b></div><div class="ds">+ Pistachio</div></div><div class="c"><div class="nm"><span>Nutella + Almonds</span><b class="pr"><span class="tbc">XX</span></b></div><div class="ds">+ Almonds</div></div></div></div>
+    </div>
+    <footer><span>Real dough. Real passion. Real pizza.</span></footer>
+  </main>
+</div></body></html>
