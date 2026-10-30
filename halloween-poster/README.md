@@ -1,9 +1,11 @@
 # Halloween poster — Pizza Nera
 
-Two A3 portrait posters for the Halloween pizza, in `output/` as PDF (print) and PNG (screens/socials):
+A3 portrait posters for the Halloween pizza, in `output/` as PDF (print) and PNG (screens/socials):
 
-- **A** follows the shop's existing red promo posters (Marinara / Mortadella Special): red background, chunky cream title,
-  oval behind it, dot grids, curved ingredient line, cream price badge. The oval is pumpkin orange for Halloween.
+- **A1 · light**: the shop's existing red promo poster system (Marinara / Mortadella Special) with a pumpkin-orange oval and a few bats.
+- **A2 · moderate**: adds a spider web, dripping oval, a deeper title shadow, a moonlit cream base and orange/black checks.
+- **A3 · peak**: full Halloween: glowing moon, two webs and a hanging spider, 3D title, bats over the moon,
+  a jack-o'-lantern price tag and an orange/black checker strip.
 - **B** is a darker take: slate black with a pumpkin glow, "Pizza Nera" headline, brand red price badge and red checks.
 
 Edit the text, price and date at the top of `build.js`, then run `node build.js`.

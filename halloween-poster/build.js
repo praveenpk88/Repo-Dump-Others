@@ -1,7 +1,7 @@
-// Halloween pizza poster: two versions rendered to A3 portrait PDF + PNG.
-//   A — follows the shop's existing red promo posters (Marinara / Mortadella Special).
+// Halloween pizza poster rendered to A3 portrait PDF + PNG.
+//   A1–A3 — follow the shop's existing red promo posters (Marinara / Mortadella Special), light → peak enhancement.
 //   B — a darker, more designed take that keeps the brand red, cream and checks.
-// Usage: node build.js   (or: node build.js a)
+// Usage: node build.js   (or: node build.js a1 a3)
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
@@ -10,8 +10,8 @@ const { chromium } = require('playwright');
 const T = {
   name: 'Pizza Nera',                 // version B headline (suggested name)
   kicker: 'Halloween Special',
-  ingredients: 'Charcoal dough, pumpkin cream, fior di latte, gorgonzola & crispy prosciutto',
-  price: 'XX',                        // set to e.g. '28'
+  ingredients: 'Pumpkin cream, gorgonzola, fior di latte, guanciale & sun-dried tomatoes',
+  price: '28',                        // 'XX' prints a highlighted placeholder
   date: '31 October',
   tagline: 'Dare to go dark',
 };
@@ -39,51 +39,135 @@ const dots = (cols, rows, gap, r, c) => {
 };
 
 // ============================================================================
-// A — same system as the existing promo posters
+// A — same system as the existing promo posters, in three enhancement levels:
+//   1 light polish · 2 moderate Halloween touches · 3 peak (moon, webs, pumpkin price)
 // ============================================================================
-function posterA() {
-  const C = { red: '#C40001', cream: '#F8F1DF', oval: '#F2902E', pale: '#F0EEE6', check: '#9FB3C0' };
+
+// Quarter spider web anchored in a corner. flip mirrors it for the right-hand corner.
+const web = (c, size, flip = false) => {
+  const R = 100, spokes = 7, rings = [22, 42, 62, 82, 100];
+  const pt = (r, a) => [r * Math.cos(a), r * Math.sin(a)];
+  let d = '';
+  for (let i = 0; i < spokes; i++) { const [x, y] = pt(R * 1.05, (i / (spokes - 1)) * Math.PI / 2); d += `M0 0L${x.toFixed(1)} ${y.toFixed(1)}`; }
+  for (const r of rings) {
+    for (let i = 0; i < spokes - 1; i++) {
+      const a0 = (i / (spokes - 1)) * Math.PI / 2, a1 = ((i + 1) / (spokes - 1)) * Math.PI / 2;
+      const [x0, y0] = pt(r, a0), [x1, y1] = pt(r, a1), [mx, my] = pt(r * 0.86, (a0 + a1) / 2);
+      d += `M${x0.toFixed(1)} ${y0.toFixed(1)}Q${mx.toFixed(1)} ${my.toFixed(1)} ${x1.toFixed(1)} ${y1.toFixed(1)}`;
+    }
+  }
+  return `<svg width="${size}mm" height="${size}mm" viewBox="0 0 100 100" style="${flip ? 'transform:scaleX(-1)' : ''}">
+    <path d="${d}" fill="none" stroke="${c}" stroke-width="1.1" stroke-linecap="round"/></svg>`;
+};
+const spider = (c, thread) => `<svg viewBox="0 0 40 ${thread + 40}" width="100%">
+  <path d="M20 0V${thread + 8}" stroke="${c}" stroke-width=".8"/>
+  <g transform="translate(20 ${thread + 18})" fill="none" stroke="${c}" stroke-width="1.6" stroke-linecap="round">
+    <path d="M-5 -4l-8 -7-4 4M-5 0h-10l-4 4M-5 3l-8 6-2 6M-4 6l-5 9 1 5M5 -4l8 -7 4 4M5 0h10l4 4M5 3l8 6 2 6M4 6l5 9-1 5"/></g>
+  <ellipse cx="20" cy="${thread + 21}" rx="6" ry="7.5" fill="${c}"/><circle cx="20" cy="${thread + 12}" r="4" fill="${c}"/></svg>`;
+// Orange oval with pumpkin "drips" hanging from its bottom edge.
+const dripOval = (c, gloss) => {
+  const cx = 95, cy = 33, rx = 95, ry = 33;
+  const drips = [[38, 10], [58, 18], [83, 8], [104, 22], [128, 12], [150, 16]];
+  const yb = (x) => cy + ry * Math.sqrt(1 - ((x - cx) / rx) ** 2) - 2;
+  const d = drips.map(([x, len]) => { const y = yb(x), w = 3.4;
+    return `M${x - w} ${y}V${y + len}a${w} ${w} 0 0 0 ${2 * w} 0V${y}Z`; }).join('');
+  return `<svg viewBox="0 0 190 96" width="190mm" height="96mm">
+    <ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="${c}"/><path d="${d}" fill="${c}"/>
+    ${gloss ? `<ellipse cx="60" cy="16" rx="32" ry="6" fill="#fff" opacity=".22" transform="rotate(-8 60 16)"/>` : ''}</svg>`;
+};
+// Jack-o'-lantern price tag.
+const pumpkin = (label) => `<svg viewBox="0 0 120 108" width="100%">
+  <defs><radialGradient id="pk" cx="45%" cy="40%" r="70%"><stop offset="0" stop-color="#FFB050"/><stop offset=".6" stop-color="#F2862A"/><stop offset="1" stop-color="#C9561A"/></radialGradient></defs>
+  <path d="M60 22 C58 12 62 6 70 3" stroke="#3F5B2A" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <path d="M68 10c8-6 18-4 22 2-8 0-14 2-20 6" fill="#4E7A33"/>
+  <ellipse cx="22" cy="64" rx="18" ry="34" fill="url(#pk)"/><ellipse cx="98" cy="64" rx="18" ry="34" fill="url(#pk)"/>
+  <ellipse cx="38" cy="62" rx="24" ry="40" fill="url(#pk)"/><ellipse cx="82" cy="62" rx="24" ry="40" fill="url(#pk)"/>
+  <ellipse cx="60" cy="61" rx="27" ry="42" fill="url(#pk)"/>
+  <path d="M38 24 C30 50 30 80 38 100 M82 24 C90 50 90 80 82 100 M60 20 V103" stroke="#B4481A" stroke-width="1.4" fill="none" opacity=".55"/>
+  <text x="60" y="78" text-anchor="middle" font-family="Lilita One" font-size="34" fill="#FFE27A" stroke="#5A1E05" stroke-width="2.2" paint-order="stroke"
+    transform="translate(60 0) scale(.9 1) translate(-60 0)">${label}</text></svg>`;
+const grain = (o) => `<svg style="position:absolute;inset:0;opacity:${o};mix-blend-mode:overlay;pointer-events:none" width="100%" height="100%">
+  <filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"/>
+  <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0"/></filter><rect width="100%" height="100%" filter="url(#gr)"/></svg>`;
+
+function posterA(L) {
+  const C = { red: '#C40001', cream: '#F8F1DF', oval: '#F2902E', pale: '#F0EEE6', check: '#9FB3C0', ink: '#1A0B07', deep: '#7A0000' };
+  const extrude = (n, step, col) => Array.from({ length: n }, (_, i) => `${((i + 1) * step).toFixed(2)}mm ${((i + 1) * step).toFixed(2)}mm 0 ${col}`).join(', ');
+  const titleShadow = [
+    '0 .8mm 0 rgba(0,0,0,.12)',
+    `${extrude(5, .32, C.deep)}, 0 3mm 4mm rgba(0,0,0,.25)`,
+    `${extrude(9, .34, C.ink)}, 0 5mm 6mm rgba(0,0,0,.35)`,
+  ][L - 1];
   const css = `
 body { background: ${C.red}; font-family: 'Lilita One' }
-.page { background: ${C.red} }
+.page { background: ${[
+    C.red,
+    `radial-gradient(ellipse 80% 60% at 50% 32%, #D50A08, ${C.red} 55%, #A80000)`,
+    `radial-gradient(ellipse 85% 55% at 50% 28%, #D90C08, ${C.red} 50%, #8E0000 85%, #5E0000)`,
+  ][L - 1]} }
 .dots-tl { position: absolute; left: 9mm; top: 9mm }
 .dots-r { position: absolute; right: 7mm; top: 64mm }
+.web { position: absolute; top: 0; opacity: ${L === 3 ? .75 : .55} } .web.l { left: 0 } .web.r { right: 0 }
+.spider { position: absolute; right: ${L === 3 ? 30 : 22}mm; top: 0; width: ${L === 3 ? 11 : 8}mm }
 .xs { position: absolute; right: 18mm; top: 12mm; color: ${C.cream}; font-family: 'Poppins'; font-weight: 600; font-size: 8mm; letter-spacing: 4.5mm }
 .oval { position: absolute; left: 50%; top: 46mm; width: 190mm; height: 66mm; margin-left: -95mm; border-radius: 50%; background: ${C.oval} }
+.drip { position: absolute; left: 50%; top: 46mm; margin-left: -95mm; ${L === 3 ? 'filter: drop-shadow(0 1.2mm 0 rgba(0,0,0,.18))' : ''} }
 h1 { position: absolute; left: 0; right: 0; top: 22mm; text-align: center; color: ${C.cream}; font-weight: 400; font-size: 44mm; line-height: .86;
-  transform: scaleX(.84); letter-spacing: -.005em; text-shadow: 0 .8mm 0 rgba(0,0,0,.12) }
-.date { position: absolute; left: 0; right: 0; top: 118mm; text-align: center; color: ${C.cream}; font-size: 8.5mm; letter-spacing: .06em; transform: scaleX(.9) }
-.bats { position: absolute; top: 112mm; right: 22mm; width: 30mm; display: grid; gap: 2mm }
-.bats svg { width: 16mm } .bats svg:nth-child(2) { width: 11mm; margin-left: 14mm }
-.bats.l { left: 20mm; right: auto; top: 102mm } .bats.l svg:nth-child(2) { margin-left: 0; width: 9mm }
-.arc { position: absolute; left: 0; top: 116mm; width: ${W}mm; height: 80mm }
+  transform: scaleX(.84) ${L === 3 ? 'rotate(-2deg)' : ''}; letter-spacing: -.005em; text-shadow: ${titleShadow} }
+.date { position: absolute; left: 0; right: 0; top: ${L === 1 ? 118 : 137}mm; text-align: center; color: ${C.cream}; font-size: 8.5mm; letter-spacing: .06em; transform: scaleX(.9) }
+.date.tag span { display: inline-block; background: ${C.ink}; color: ${C.oval}; padding: 1.2mm 6mm 1.6mm; border-radius: 1.5mm; letter-spacing: .12em; transform: rotate(-2deg) }
+.bat { position: absolute } .bat svg { width: 100%; display: block }
+.arc { position: absolute; left: 0; top: ${L === 1 ? 116 : 122}mm; width: ${W}mm; height: 80mm; ${L > 1 ? 'filter: drop-shadow(0 .5mm 0 rgba(0,0,0,.25))' : ''} }
 .pale { position: absolute; left: 50%; top: 248mm; width: 420mm; height: 420mm; margin-left: -210mm; border-radius: 50%; background: ${C.pale} }
-.pizza { position: absolute; left: 50%; top: 160mm; width: 285mm; margin-left: -142.5mm; filter: drop-shadow(0 6mm 6mm rgba(0,0,0,.35)) brightness(1.06) saturate(1.08) }
+.moon { background: radial-gradient(circle at 42% 30%, #FFF9EA, #F2EAD4 55%, #E6DCC2) }
+.moon.glow { box-shadow: 0 0 0 4mm rgba(255,240,205,.18), 0 0 0 10mm rgba(255,240,205,.1), 0 0 40mm 12mm rgba(255,214,150,.35) }
+.crater { position: absolute; border-radius: 50%; background: rgba(150,120,80,.06) }
+.pizza { position: absolute; left: 50%; top: 160mm; width: ${L === 1 ? 290 : 296}mm; margin-left: -${L === 1 ? 145 : 148}mm;
+  filter: drop-shadow(0 6mm ${L === 3 ? 9 : 6}mm rgba(0,0,0,${L === 3 ? .5 : .38})) brightness(1.07) contrast(1.03) saturate(1.1) }
 .price { position: absolute; left: 14mm; top: 322mm; width: 52mm; height: 52mm; border-radius: 50%; background: ${C.red}; color: ${C.cream};
-  display: grid; place-items: center; font-size: 21mm; box-shadow: 0 0 0 1.6mm ${C.pale} }
+  display: grid; place-items: center; font-size: 21mm;
+  box-shadow: ${L === 1 ? `0 0 0 1.6mm ${C.pale}` : `0 0 0 1.6mm ${C.pale}, 0 0 0 3.4mm ${C.oval}, 0 2mm 5mm rgba(0,0,0,.25)`} }
 .price span { transform: scaleX(.88) }
+.pk { position: absolute; left: 9mm; top: 302mm; width: 80mm; transform: rotate(-8deg); filter: drop-shadow(0 2.5mm 3mm rgba(0,0,0,.35)) }
 .checks { position: absolute; right: 16mm; bottom: 20mm; width: 54mm; height: 8mm;
-  background: repeating-conic-gradient(${C.check} 0 25%, transparent 0 50%) 0 0 / 4mm 4mm }
+  background: repeating-conic-gradient(${L === 1 ? C.check : C.ink} 0 25%, ${L === 1 ? 'transparent' : C.oval} 0 50%) 0 0 / 4mm 4mm }
+.strip { position: absolute; left: 0; right: 0; bottom: 0; height: 10mm; background: repeating-conic-gradient(${C.ink} 0 25%, ${C.oval} 0 50%) 0 0 / 10mm 10mm }
+.strip::before { content: ''; position: absolute; left: 0; right: 0; top: -2mm; height: 1.2mm; background: ${C.ink} }
 .pill { position: absolute; left: 50%; bottom: -10mm; width: 90mm; height: 26mm; margin-left: -45mm; border-radius: 13mm; background: #e2ded4 }`;
 
-  return head('Halloween Special — A', css) + `
+  const bats = [
+    // [left, top, width, rotate, colour]
+    [[20, 102, 16, 0], [21, 112, 9, 0], [252, 112, 16, 0], [266, 121, 11, 0]],
+    [[16, 100, 17, -10], [38, 110, 10, 8], [24, 120, 7, -4], [246, 104, 18, 10], [270, 116, 10, -6], [256, 126, 7, 4]],
+    [[14, 96, 22, -12], [42, 110, 12, 10], [22, 124, 8, -6], [240, 98, 24, 12], [272, 114, 12, -8], [254, 128, 8, 6],
+     [104, 368, 24, -8], [140, 386, 12, 6], [166, 362, 17, 10], [204, 380, 21, -6], [244, 364, 11, 4], [262, 388, 15, -10]],
+  ][L - 1];
+  const batCol = (i) => (L === 3 && i >= 6 ? C.ink : C.cream);
+  const ingredients = T.ingredients;
+  const batsHtml = bats.map(([x, y, w, r], i) => `<div class="bat" style="left:${x}mm;top:${y}mm;width:${w}mm;transform:rotate(${r}deg)">${bat(batCol(i))}</div>`);
+
+  return head(`Halloween Special — A${L}`, css) + `
 <div class="page">
-  <div class="dots-tl">${dots(5, 5, 5.4, .75, C.cream)}</div>
+  ${L === 3 ? grain(.16) : ''}
+  ${L === 1 ? `<div class="dots-tl">${dots(5, 5, 5.4, .75, C.cream)}</div>` : `<div class="web l">${web(C.cream, L === 3 ? 62 : 52)}</div>`}
+  ${L === 3 ? `<div class="web r">${web(C.cream, 44, true)}</div>` : ''}
   <div class="dots-r">${dots(2, 10, 5.4, .75, C.cream)}</div>
-  <div class="xs">× × × ×</div>
-  <div class="oval"></div>
+  ${L === 3 ? '' : '<div class="xs">× × × ×</div>'}
+  ${L > 1 ? `<div class="spider">${spider(L === 3 ? C.ink : C.cream, L === 3 ? 34 : 4)}</div>` : ''}
+  ${L === 1 ? '<div class="oval"></div>' : `<div class="drip">${dripOval(C.oval, L === 3)}</div>`}
   <h1>Halloween<br>Special</h1>
-  <div class="date">${esc(T.date)}</div>
-  <div class="bats l">${bat(C.cream)}${bat(C.cream)}</div>
-  <div class="bats">${bat(C.cream)}${bat(C.cream)}</div>
+  <div class="date${L === 3 ? ' tag' : ''}"><span>${esc(T.date)}</span></div>
+  ${batsHtml.slice(0, 6).join('')}
   <svg class="arc" viewBox="0 0 297 80"><defs><path id="arc" d="M6,78 Q148.5,4 291,78"/></defs>
     <text font-family="Lilita One" font-size="7.9" fill="${C.cream}" text-anchor="middle" letter-spacing=".1">
-    <textPath href="#arc" startOffset="50%">${esc(T.ingredients)}</textPath></text></svg>
-  <div class="pale"></div>
+    <textPath href="#arc" startOffset="50%">${esc(ingredients)}</textPath></text></svg>
+  <div class="pale${L > 1 ? ' moon' : ''}${L === 3 ? ' glow' : ''}">${L === 3 ? `
+    <i class="crater" style="left:52mm;top:30mm;width:22mm;height:22mm"></i><i class="crater" style="left:330mm;top:40mm;width:30mm;height:30mm"></i>
+    <i class="crater" style="left:84mm;top:96mm;width:14mm;height:14mm"></i><i class="crater" style="left:300mm;top:110mm;width:16mm;height:16mm"></i>` : ''}</div>
   <img class="pizza" src="../photos/pizza.png">
-  <div class="price"><span>$${price(T.price)}</span></div>
-  <div class="checks"></div>
-  <div class="pill"></div>
+  ${batsHtml.slice(6).join('')}
+  ${L === 3 ? `<div class="pk">${pumpkin('$' + esc(T.price))}</div>` : `<div class="price"><span>$${price(T.price)}</span></div>`}
+  ${L === 3 ? '<div class="strip"></div>' : '<div class="checks"></div><div class="pill"></div>'}
 </div></body></html>`;
 }
 
@@ -147,7 +231,7 @@ h1 { position: absolute; left: 0; right: 0; top: 44mm; text-align: center; font-
 </div></body></html>`;
 }
 
-const POSTERS = { a: posterA, b: posterB };
+const POSTERS = { a1: () => posterA(1), a2: () => posterA(2), a3: () => posterA(3), b: posterB };
 
 (async () => {
   const want = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(POSTERS);
