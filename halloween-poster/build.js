@@ -9,6 +9,7 @@ const { chromium } = require('playwright');
 // ---- edit the poster text here ----
 const T = {
   name: 'Pizza Nera',                 // version B headline (suggested name)
+  title: 'Pizzaween',                 // headline on A1–A3 and concept 3
   kicker: 'Halloween Special',
   ingredients: 'Pumpkin cream, gorgonzola, fior di latte, guanciale & sun-dried tomatoes',
   price: '28',                        // 'XX' prints a highlighted placeholder
@@ -146,7 +147,7 @@ h1 { position: absolute; left: 0; right: 0; top: 22mm; text-align: center; color
   const ingredients = T.ingredients;
   const batsHtml = bats.map(([x, y, w, r], i) => `<div class="bat" style="left:${x}mm;top:${y}mm;width:${w}mm;transform:rotate(${r}deg)">${bat(batCol(i))}</div>`);
 
-  return head(`Halloween Special — A${L}`, css) + `
+  return head(`${T.title} — A${L}`, css) + `
 <div class="page">
   ${L === 3 ? grain(.16) : ''}
   ${L === 1 ? `<div class="dots-tl">${dots(5, 5, 5.4, .75, C.cream)}</div>` : `<div class="web l">${web(C.cream, L === 3 ? 62 : 52)}</div>`}
@@ -155,7 +156,7 @@ h1 { position: absolute; left: 0; right: 0; top: 22mm; text-align: center; color
   ${L === 3 ? '' : '<div class="xs">× × × ×</div>'}
   ${L > 1 ? `<div class="spider">${spider(L === 3 ? C.ink : C.cream, L === 3 ? 34 : 4)}</div>` : ''}
   ${L === 1 ? '<div class="oval"></div>' : `<div class="drip">${dripOval(C.oval, L === 3)}</div>`}
-  <h1>Halloween<br>Special</h1>
+  <h1>${esc(T.title)}<br>Special</h1>
   <div class="date${L === 3 ? ' tag' : ''}"><span>${esc(T.date)}</span></div>
   ${batsHtml.slice(0, 6).join('')}
   <svg class="arc" viewBox="0 0 297 80"><defs><path id="arc" d="M6,78 Q148.5,4 291,78"/></defs>
@@ -266,7 +267,7 @@ h1 { position: absolute; left: 14mm; top: 56mm; font-weight: 400; font-size: 58m
   ${bats.map(([x, y, w, r]) => `<div class="bat" style="left:${x}mm;top:${y}mm;width:${w}mm;transform:rotate(${r}deg)">${bat(C.ink)}</div>`).join('')}
   <div class="kick">Only for Halloween</div>
   <div class="oval"></div>
-  <h1>Halloween<br>Special</h1>
+  <h1>${esc(T.title)}<br>Special</h1>
   <img class="pizza" src="../photos/pizza.png">
   <div class="list"><h3>What's on it</h3>${ingredientList().map((x) => `<div>${esc(x[0].toUpperCase() + x.slice(1))}</div>`).join('')}</div>
   <div class="price"><div><b>$${price(T.price)}</b></div></div>
@@ -348,10 +349,10 @@ h1 { position: absolute; left: 62mm; width: 222mm; top: 20mm; text-align: center
 .date { position: absolute; right: 18mm; top: 390mm; color: ${C.red}; font-size: 10mm; transform-origin: right; transform: scaleX(.9) }
 .ingr { position: absolute; right: 18mm; top: 366mm; width: 190mm; text-align: right; color: ${C.ink}; font-size: 8mm; line-height: 1.15 }
 .checks { position: absolute; left: 18mm; bottom: 14mm; width: 54mm; height: 8mm; background: repeating-conic-gradient(${C.blue} 0 25%, transparent 0 50%) 0 0 / 4mm 4mm }`;
-  return head('Halloween Special — Concept 3', css) + `
+  return head(`${T.title} — Concept 3`, css) + `
 <div class="page">
   <div class="dots-tl">${dots(5, 5, 5.4, .75, C.cream)}</div><div class="dots-r">${dots(2, 10, 5.4, .75, C.cream)}</div><div class="xs">× × × ×</div>
-  <div class="oval"></div><h1>Halloween<br>Special</h1>
+  <div class="oval"></div><h1>${esc(T.title)}<br>Special</h1>
   <div class="cloud">${cloud}<p>Boo! I came back for the guanciale!</p></div>
   <div class="pale"></div>
   <div class="ghost">${ghost}</div>

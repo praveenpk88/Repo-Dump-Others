@@ -1,4 +1,4 @@
-# Halloween poster — Pizza Nera
+# Halloween poster — Pizzaween
 
 A3 portrait posters for the Halloween pizza, in `output/` as PDF (print) and PNG (screens/socials):
 
