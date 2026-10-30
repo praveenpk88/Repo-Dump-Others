@@ -10,6 +10,8 @@ const { chromium } = require('playwright');
 const T = {
   name: 'Pizza Nera',                 // version B headline (suggested name)
   title: 'Pizzaween',                 // headline on A1–A3 and concept 3
+  photo: 'pizza-tomatoes.png',        // cut-out in photos/
+  badge: 'witch',                     // A3 price tag: pumpkin | witch | bat | ghost | tomb | moon | cat
   kicker: 'Halloween Special',
   ingredients: 'Pumpkin cream, gorgonzola, fior di latte, crispy guanciale & sun-dried tomatoes',
   price: '28',                        // 'XX' prints a highlighted placeholder
@@ -91,6 +93,55 @@ const grain = (o) => `<svg style="position:absolute;inset:0;opacity:${o};mix-ble
   <filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"/>
   <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0"/></filter><rect width="100%" height="100%" filter="url(#gr)"/></svg>`;
 
+// Price tags for A3. Each is a 120×120 SVG with the price centred in it.
+const priceText = (label, y, fill, stroke, size = 34) => `<text x="60" y="${y}" text-anchor="middle" font-family="Lilita One" font-size="${size}" fill="${fill}"
+  ${stroke ? `stroke="${stroke}" stroke-width="3" stroke-linejoin="round" paint-order="stroke"` : ''} transform="translate(60 0) scale(.9 1) translate(-60 0)">${label}</text>`;
+const BADGES = {
+  pumpkin: (l) => pumpkin(l),
+  // Brand red price circle wearing a witch hat.
+  witch: (l) => `<svg viewBox="0 0 120 124" width="100%">
+    <circle cx="60" cy="76" r="42" fill="#C40001" stroke="#F8F1DF" stroke-width="3.5"/>
+    <g transform="rotate(-14 56 36)"><path d="M30 40 C40 30 46 14 54 2 C58 -3 66 -1 64 6 C62 14 68 24 82 40 Z" fill="#1A0B07"/>
+      <path d="M36 34 C48 30 66 30 78 34 L80 40 C66 36 48 36 34 40 Z" fill="#F2902E"/>
+      <ellipse cx="56" cy="41" rx="38" ry="7.5" fill="#1A0B07"/></g>
+    ${priceText(l, 92, '#F8F1DF')}</svg>`,
+  // Price circle as a bat's body, with wings and ears.
+  bat: (l) => `<svg viewBox="0 0 160 110" width="100%">
+    <path d="M44 52 C30 30 14 26 0 30 C8 38 10 46 6 54 C14 52 20 56 22 64 C28 58 36 60 40 68 Z" fill="#1A0B07"/>
+    <path d="M116 52 C130 30 146 26 160 30 C152 38 150 46 154 54 C146 52 140 56 138 64 C132 58 124 60 120 68 Z" fill="#1A0B07"/>
+    <path d="M58 22 L62 8 L70 18 Z M102 22 L98 8 L90 18 Z" fill="#1A0B07"/>
+    <circle cx="80" cy="60" r="40" fill="#C40001" stroke="#1A0B07" stroke-width="4"/>
+    <g transform="translate(20 0)">${priceText(l, 74, '#F8F1DF')}</g></svg>`,
+  // A ghost holding the price (ties in with the Boo! poster).
+  ghost: (l) => `<svg viewBox="0 0 120 130" width="100%">
+    <path d="M14 62 C14 26 36 6 60 6 C84 6 106 26 106 62 V114 C100 126 92 126 86 116 C80 126 72 128 66 116 C60 128 50 128 46 116 C40 126 30 128 24 116 C18 124 14 120 14 114 Z" fill="#FFFDF8" stroke="#1A0B07" stroke-width="2.5"/>
+    <ellipse cx="46" cy="40" rx="5" ry="7" fill="#1A0B07"/><ellipse cx="74" cy="40" rx="5" ry="7" fill="#1A0B07"/>
+    <ellipse cx="60" cy="54" rx="4" ry="5" fill="#1A0B07"/>
+    ${priceText(l, 96, '#C40001', null, 32)}</svg>`,
+  // Tombstone: "R.I.P. hunger".
+  tomb: (l) => `<svg viewBox="0 0 120 124" width="100%">
+    <path d="M20 116 V48 C20 18 38 6 60 6 C82 6 100 18 100 48 V116 Z" fill="#2A2220" stroke="#F8F1DF" stroke-width="3"/>
+    <text x="60" y="40" text-anchor="middle" font-family="Lilita One" font-size="14" fill="#F2902E" letter-spacing="1">R.I.P.</text>
+    <text x="60" y="56" text-anchor="middle" font-family="Lilita One" font-size="11" fill="#F8F1DF" letter-spacing="1">HUNGER</text>
+    ${priceText(l, 94, '#F8F1DF', null, 32)}
+    <path d="M10 118 Q20 104 26 118 Q32 106 40 118 H80 Q88 106 94 118 Q100 104 110 118 Z" fill="#3F5B2A"/></svg>`,
+  // Full moon with a bat flying past.
+  moon: (l) => `<svg viewBox="0 0 120 120" width="100%">
+    <defs><radialGradient id="mn" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#FFF9EA"/><stop offset="1" stop-color="#E8DCBC"/></radialGradient></defs>
+    <circle cx="60" cy="62" r="50" fill="url(#mn)" stroke="#C40001" stroke-width="3"/>
+    <circle cx="38" cy="44" r="7" fill="#000" opacity=".05"/><circle cx="84" cy="84" r="9" fill="#000" opacity=".05"/>
+    <g transform="translate(70 4) scale(.62)">${bat('#1A0B07').replace(/<\/?svg[^>]*>/g, '')}</g>
+    ${priceText(l, 78, '#C40001', null, 36)}</svg>`,
+  // Black cat face.
+  cat: (l) => `<svg viewBox="0 0 120 124" width="100%">
+    <path d="M22 44 L26 6 L52 30 Z M98 44 L94 6 L68 30 Z" fill="#1A0B07"/><path d="M28 34 L30 16 L44 30 Z M92 34 L90 16 L76 30 Z" fill="#C40001"/>
+    <circle cx="60" cy="70" r="46" fill="#1A0B07"/>
+    <ellipse cx="42" cy="54" rx="7" ry="9" fill="#F2902E"/><ellipse cx="78" cy="54" rx="7" ry="9" fill="#F2902E"/>
+    <ellipse cx="42" cy="54" rx="2" ry="7" fill="#1A0B07"/><ellipse cx="78" cy="54" rx="2" ry="7" fill="#1A0B07"/>
+    <path d="M14 70 H34 M16 78 L34 74 M106 70 H86 M104 78 L86 74" stroke="#F8F1DF" stroke-width="1.6" stroke-linecap="round"/>
+    ${priceText(l, 100, '#F8F1DF', null, 30)}</svg>`,
+};
+
 function posterA(L) {
   const C = { red: '#C40001', cream: '#F8F1DF', oval: '#F2902E', pale: '#F0EEE6', check: '#9FB3C0', ink: '#1A0B07', deep: '#7A0000' };
   const extrude = (n, step, col) => Array.from({ length: n }, (_, i) => `${((i + 1) * step).toFixed(2)}mm ${((i + 1) * step).toFixed(2)}mm 0 ${col}`).join(', ');
@@ -162,12 +213,10 @@ h1 { position: absolute; left: 0; right: 0; top: 22mm; text-align: center; color
   <svg class="arc" viewBox="0 0 297 80"><defs><path id="arc" d="M6,78 Q148.5,4 291,78"/></defs>
     <text font-family="Lilita One" font-size="7.4" fill="${C.cream}" text-anchor="middle" letter-spacing=".1">
     <textPath href="#arc" startOffset="50%">${esc(ingredients)}</textPath></text></svg>
-  <div class="pale${L > 1 ? ' moon' : ''}${L === 3 ? ' glow' : ''}">${L === 3 ? `
-    <i class="crater" style="left:52mm;top:30mm;width:22mm;height:22mm"></i><i class="crater" style="left:330mm;top:40mm;width:30mm;height:30mm"></i>
-    <i class="crater" style="left:84mm;top:96mm;width:14mm;height:14mm"></i><i class="crater" style="left:300mm;top:110mm;width:16mm;height:16mm"></i>` : ''}</div>
-  <img class="pizza" src="../photos/pizza.png">
+  <div class="pale${L > 1 ? ' moon' : ''}${L === 3 ? ' glow' : ''}"></div>
+  <img class="pizza" src="../photos/${T.photo}">
   ${batsHtml.slice(6).join('')}
-  ${L === 3 ? `<div class="pk">${pumpkin('$' + esc(T.price))}</div>` : `<div class="price"><span>$${price(T.price)}</span></div>`}
+  ${L === 3 ? `<div class="pk">${BADGES[T.badge]('$' + esc(T.price))}</div>` : `<div class="price"><span>$${price(T.price)}</span></div>`}
   ${L === 3 ? '<div class="strip"></div>' : '<div class="checks"></div><div class="pill"></div>'}
 </div></body></html>`;
 }
@@ -224,7 +273,7 @@ h1 { position: absolute; left: 0; right: 0; top: 44mm; text-align: center; font-
   <div class="bat" style="left:24mm;top:104mm;width:22mm;transform:rotate(-12deg)">${bat('#0A0807')}</div>
   <div class="bat" style="left:52mm;top:120mm;width:12mm;transform:rotate(8deg)">${bat('#0A0807')}</div>
   <div class="bat" style="right:30mm;top:110mm;width:16mm;transform:rotate(10deg)">${bat('#0A0807')}</div>
-  <img class="pizza" src="../photos/pizza.png">
+  <img class="pizza" src="../photos/${T.photo}">
   <div class="price"><div><b>$${price(T.price)}</b></div></div>
   <div class="ingr">${ingr}</div>
   <div class="date">${esc(T.date)} · Halloween</div>
@@ -268,7 +317,7 @@ h1 { position: absolute; left: 14mm; top: 56mm; font-weight: 400; font-size: 58m
   <div class="kick">Only for Halloween</div>
   <div class="oval"></div>
   <h1>${esc(T.title)}<br>Special</h1>
-  <img class="pizza" src="../photos/pizza.png">
+  <img class="pizza" src="../photos/${T.photo}">
   <div class="list"><h3>What's on it</h3>${ingredientList().map((x) => `<div>${esc(x[0].toUpperCase() + x.slice(1))}</div>`).join('')}</div>
   <div class="price"><div><b>$${price(T.price)}</b></div></div>
   <div class="band"><span>${esc(T.date)}</span><em>il Mercato Centrale</em></div>
@@ -306,7 +355,7 @@ body { background: ${C.red}; font-family: 'Lilita One' }
   <div class="dots-tl">${dots(5, 5, 5.4, .75, C.cream)}</div><div class="dots-r">${dots(2, 6, 5.4, .75, C.cream)}</div><div class="xs">× × × ×</div>
   <div class="big">HALLO<br>WEEN</div>
   ${bats.map(([x, y, w, r]) => `<div class="bat" style="left:${x}mm;top:${y}mm;width:${w}mm;transform:rotate(${r}deg)">${bat(C.ink)}</div>`).join('')}
-  <img class="pizza" src="../photos/pizza.png">
+  <img class="pizza" src="../photos/${T.photo}">
   <div class="pill"><span>Special</span></div>
   <div class="burst"><svg viewBox="0 0 100 100"><polygon points="${star(14, 50, 41)}" fill="${C.oval}"/><circle cx="50" cy="50" r="36" fill="${C.cream}"/></svg>
     <div class="t"><div><small>only</small><b>$${price(T.price)}</b></div></div></div>
@@ -356,7 +405,7 @@ h1 { position: absolute; left: 62mm; width: 222mm; top: 20mm; text-align: center
   <div class="cloud">${cloud}<p>Boo! I came back for the crispy guanciale!</p></div>
   <div class="pale"></div>
   <div class="ghost">${ghost}</div>
-  <img class="pizza" src="../photos/pizza.png">
+  <img class="pizza" src="../photos/${T.photo}">
   <div class="price"><div><small>For only</small><b>$${price(T.price)}</b></div></div>
   <div class="ingr">${esc(T.ingredients)}</div>
   <div class="date">${esc(T.date)}</div>

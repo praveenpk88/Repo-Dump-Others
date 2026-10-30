@@ -12,4 +12,4 @@ A3 portrait posters for the Halloween pizza, in `output/` as PDF (print) and PNG
 - **B** is a darker take: slate black with a pumpkin glow, "Pizza Nera" headline, brand red price badge and red checks.
 
 Edit the text, price and date at the top of `build.js`, then run `node build.js`.
-`cut_pizza.py` cuts the pizza out of the original photo into `photos/pizza.png`.
+`cut_pizza.py` cuts the pizza out of a photo (`photos/pizza-tomatoes.png` is the current one). The A3 price tag is set by `badge` in `build.js`; `output/badge-options.jpg` compares the choices.
