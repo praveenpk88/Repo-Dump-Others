@@ -413,7 +413,80 @@ h1 { position: absolute; left: 62mm; width: 222mm; top: 20mm; text-align: center
 </div></body></html>`;
 }
 
-const POSTERS = { a1: () => posterA(1), a2: () => posterA(2), a3: () => posterA(3), b: posterB, 'concept-1': concept1, 'concept-2': concept2, 'concept-3': concept3 };
+// Bat price badge with a small label over the price, for the final poster.
+const batBadge = (small, label) => `<svg viewBox="0 0 160 112" width="100%">
+  <path d="M44 52 C30 30 14 26 0 30 C8 38 10 46 6 54 C14 52 20 56 22 64 C28 58 36 60 40 68 Z" fill="#1A0B07"/>
+  <path d="M116 52 C130 30 146 26 160 30 C152 38 150 46 154 54 C146 52 140 56 138 64 C132 58 124 60 120 68 Z" fill="#1A0B07"/>
+  <path d="M56 24 L60 6 L70 18 Z M104 24 L100 6 L90 18 Z" fill="#1A0B07"/>
+  <circle cx="80" cy="62" r="42" fill="#C40001" stroke="#1A0B07" stroke-width="4"/>
+  <circle cx="80" cy="62" r="36" fill="none" stroke="#F8F1DF" stroke-width="1.2" opacity=".6"/>
+  <text x="80" y="50" text-anchor="middle" font-family="Lilita One" font-size="11" fill="#F8F1DF" letter-spacing=".4">${small}</text>
+  <text x="80" y="82" text-anchor="middle" font-family="Lilita One" font-size="33" fill="#F8F1DF" transform="translate(80 0) scale(.92 1) translate(-80 0)">${label}</text></svg>`;
+
+// Final · Boo! ghost poster with the A3 Halloween dressing: webs, spider, bats, 3D title, moon glow, bat price badge.
+function finalPoster() {
+  const C = { red: '#C40001', cream: '#F8F1DF', blue: '#B9CBD6', bluedk: '#6F8797', pale: '#F0EEE6', oval: '#F2902E', ink: '#1A0B07' };
+  const ghost = `<svg viewBox="0 0 120 140" width="100%">
+    <path d="M14 70 C14 30 36 8 60 8 C84 8 106 30 106 70 V122 C100 134 92 134 86 124 C80 134 72 136 66 124 C60 136 50 136 46 124 C40 134 30 136 24 124 C18 132 14 128 14 122 Z" fill="#FFFDF8"/>
+    <path d="M14 82 C4 78 2 66 8 60 C12 66 14 70 18 72 M106 82 C116 78 118 66 112 60 C108 66 106 70 102 72" fill="#FFFDF8"/>
+    <path d="M86 20 C96 28 102 44 102 64" stroke="#E4E1DA" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>
+    <ellipse cx="45" cy="60" rx="7" ry="10" fill="${C.ink}"/><ellipse cx="75" cy="60" rx="7" ry="10" fill="${C.ink}"/>
+    <circle cx="47" cy="56" r="2.6" fill="#fff"/><circle cx="77" cy="56" r="2.6" fill="#fff"/>
+    <ellipse cx="34" cy="76" rx="7" ry="4" fill="#F7A6A6" opacity=".8"/><ellipse cx="86" cy="76" rx="7" ry="4" fill="#F7A6A6" opacity=".8"/>
+    <ellipse cx="60" cy="82" rx="7" ry="9" fill="${C.ink}"/><ellipse cx="60" cy="86" rx="4" ry="4" fill="#E2504A"/></svg>`;
+  const cloud = `<svg viewBox="0 0 160 110" width="100%"><g fill="#fff">
+    <circle cx="48" cy="52" r="30"/><circle cx="82" cy="40" r="34"/><circle cx="116" cy="54" r="28"/><circle cx="66" cy="70" r="26"/><circle cx="100" cy="72" r="26"/>
+    <circle cx="30" cy="92" r="8"/><circle cx="16" cy="104" r="5"/></g></svg>`;
+  const css = `
+body { background: ${C.red}; font-family: 'Lilita One' }
+.page { background: radial-gradient(ellipse 85% 55% at 50% 28%, #D90C08, ${C.red} 50%, #9A0000 85%, #6A0000) }
+.web { position: absolute } .web.tl { left: 0; top: 0; opacity: .7 } .web.bl { left: 0; bottom: 10mm; opacity: .5; transform: scaleY(-1) }
+.spider { position: absolute; left: 27mm; top: 0; width: 12mm }
+.bat { position: absolute } .bat svg { width: 100%; display: block }
+.batprice { position: absolute; left: 6mm; top: 318mm; width: 112mm; transform: rotate(-6deg); filter: drop-shadow(0 2.5mm 3mm rgba(0,0,0,.35)) }
+.strip { position: absolute; left: 0; right: 0; bottom: 0; height: 10mm; background: repeating-conic-gradient(${C.ink} 0 25%, ${C.oval} 0 50%) 0 0 / 10mm 10mm }
+.strip::before { content: ''; position: absolute; left: 0; right: 0; top: -2mm; height: 1.2mm; background: ${C.ink} }
+.dots-tl { position: absolute; left: 9mm; top: 9mm } .dots-r { position: absolute; right: 7mm; top: 26mm }
+.xs { position: absolute; left: 16mm; top: 46mm; color: ${C.cream}; font-family: 'Poppins'; font-weight: 600; font-size: 8mm; letter-spacing: 4.5mm }
+.oval { position: absolute; left: 60mm; top: 30mm; width: 222mm; height: 74mm; border-radius: 50%; background: ${C.blue}; transform: rotate(-5deg) }
+h1 { position: absolute; left: 62mm; width: 222mm; top: 20mm; text-align: center; color: ${C.cream}; font-weight: 400; font-size: 46mm; line-height: .86;
+  transform: scaleX(.84) rotate(-5deg); text-shadow: ${Array.from({ length: 9 }, (_, i) => `${((i + 1) * .34).toFixed(2)}mm ${((i + 1) * .34).toFixed(2)}mm 0 ${C.ink}`).join(', ')}, 0 5mm 6mm rgba(0,0,0,.35) }
+.arc { position: absolute; left: 0; top: 118mm; width: ${W}mm; height: 80mm }
+.pale { position: absolute; left: 50%; top: 262mm; width: 420mm; height: 420mm; margin-left: -210mm; border-radius: 50%;
+  background: radial-gradient(circle at 42% 30%, #FFF9EA, #F2EAD4 55%, #E6DCC2);
+  box-shadow: 0 0 0 4mm rgba(255,240,205,.18), 0 0 0 10mm rgba(255,240,205,.1), 0 0 40mm 12mm rgba(255,214,150,.35) }
+.ghost { position: absolute; right: 12mm; top: 150mm; width: 98mm; transform: rotate(12deg); filter: drop-shadow(0 2mm 3mm rgba(0,0,0,.25)) }
+.cloud { position: absolute; left: 44mm; top: 98mm; width: 144mm }
+.cloud svg { transform: scaleX(-1) }
+.cloud p { position: absolute; left: 30mm; right: 26mm; top: 38mm; text-align: center; font-size: 9.6mm; line-height: 1.02; color: ${C.bluedk}; transform: rotate(-3deg) }
+.pizza { position: absolute; left: 50%; top: 192mm; width: 272mm; margin-left: -150mm; filter: drop-shadow(0 6mm 7mm rgba(0,0,0,.4)) brightness(1.07) saturate(1.1) }
+.price { position: absolute; left: 16mm; top: 322mm; width: 58mm; height: 58mm; border-radius: 50%; background: ${C.red}; color: ${C.cream}; display: grid; place-items: center; text-align: center;
+  box-shadow: 0 0 0 1.6mm ${C.pale} }
+.price small { font-size: 7.5mm; display: block } .price b { font-weight: 400; font-size: 20mm; line-height: .9; display: block; transform: scaleX(.9) }
+.date { position: absolute; right: 16mm; top: 388mm; color: ${C.red}; font-size: 10mm; transform-origin: right; transform: scaleX(.9) }
+.ingr { position: absolute; right: 16mm; top: 352mm; width: 160mm; text-align: right; color: ${C.ink}; font-size: 8mm; line-height: 1.15 }
+.checks { position: absolute; left: 18mm; bottom: 14mm; width: 54mm; height: 8mm; background: repeating-conic-gradient(${C.blue} 0 25%, transparent 0 50%) 0 0 / 4mm 4mm }`;
+  return head(`${T.title} — Final`, css) + `
+<div class="page">
+  ${grain(.14)}
+  <div class="web tl">${web(C.cream, 64)}</div><div class="dots-r">${dots(2, 10, 5.4, .75, C.cream)}</div>
+  <div class="spider">${spider(C.ink, 62)}</div>
+  ${[[12, 150, 20, -12], [38, 168, 11, 8], [200, 112, 18, 10], [236, 100, 11, -6], [262, 120, 8, 4]].map(([x, y, w, r]) => `<div class="bat" style="left:${x}mm;top:${y}mm;width:${w}mm;transform:rotate(${r}deg)">${bat(C.cream)}</div>`).join('')}
+  <div class="oval"></div><h1>${esc(T.title)}<br>Special</h1>
+  <div class="cloud">${cloud}<p>Boo! I came back for the crispy guanciale!</p></div>
+  <div class="pale"></div>
+  <div class="ghost">${ghost}</div>
+  <img class="pizza" src="../photos/${T.photo}">
+  <div class="web bl">${web(C.ink, 58)}</div>
+  ${[[150, 392, 14, -8], [178, 401, 9, 6]].map(([x, y, w, r]) => `<div class="bat" style="left:${x}mm;top:${y}mm;width:${w}mm;transform:rotate(${r}deg)">${bat(C.ink)}</div>`).join('')}
+  <div class="batprice">${batBadge('For only', '$' + esc(T.price))}</div>
+  <div class="ingr">${esc(T.ingredients)}</div>
+  <div class="date">${esc(T.date)}</div>
+  <div class="strip"></div>
+</div></body></html>`;
+}
+
+const POSTERS = { a1: () => posterA(1), a2: () => posterA(2), a3: () => posterA(3), b: posterB, 'concept-1': concept1, 'concept-2': concept2, 'concept-3': concept3, final: finalPoster };
 
 (async () => {
   const want = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(POSTERS);
