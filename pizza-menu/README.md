@@ -11,11 +11,18 @@ Three design variants, each rendered as an A3 landscape PDF (print) and PNG (pre
 | **B · La Scala** | One photo per row, with the row drawn as a ladder. Red header band with the il Mercato checks to tie in with the other shops. |
 | **C · Lavagna** | Typographic, no photos, larger type. Made for big prints and wall boards. |
 
+**il Mercato versions** (current direction: il Mercato Centrale branding and look):
+
+| File | Content |
+| --- | --- |
+| `variant-mercato-long` | The manager's long list (`menu-data.js`), every row a Classic → Level up → Go all in ladder, focaccia + dolce sidebar. |
+| `variant-mercato-final` | The final 13-pizza list from the one-page Canva menu (`menu-final.js`), sorted into the three columns. |
+
 Everything is sized in mm, so the PDFs scale cleanly to A2/A1.
 
 ## Editing
 
-- **Text and prices:** `menu-data.js`. A price of `null` prints as a highlighted `XX` (still to be confirmed).
+- **Text and prices:** `menu-data.js` (long list) and `menu-final.js` (final list). A price of `null` prints as a highlighted `XX` (still to be confirmed).
 - **Layouts:** `build.js` (one function per variant).
 - **Rebuild:** `node build.js` (or `node build.js a` for one variant). Needs Playwright with Chromium.
 - **Photos:** `photos/` holds square JPGs cut from the old Canva menus by `cut_photos.py`. Swap in Samuele's new photos

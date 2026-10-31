@@ -337,8 +337,117 @@ footer { position: absolute; left: 11mm; right: 12mm; bottom: 5mm; display: flex
 </div></body></html>`;
 }
 
+// ============================================================================
+// il MERCATO versions — the il Mercato Centrale look (cream, strong red, Lilita title,
+// red/cream checks, round photos), three columns Classic → Level up → Go all in.
+//   mercato-long: the manager's long list (menu-data.js), every row a ladder, focaccia + dolce sidebar
+//   mercato-final: the final 13-pizza list (menu-final.js), only row 1 is a ladder, no sidebar
+// ============================================================================
+const F = require('./menu-final');
+const C_M = { paper: '#FDFBEF', red: '#C40001', deep: '#8E1410', ink: '#3A1E18', band: '#F7E9D6', rule: '#EAD8C0', blue: '#B9CBD6' };
+
+function mercato({ title, rows, ladder, side, big }) {
+  const C = C_M;
+  const S = big
+    ? { row: 40.5, ph: 31, nm: 6.4, ds: 3.9, nt: 3.4, gap: 6 }
+    : { row: 18.6, ph: 15.5, nm: 4.5, ds: 3.1, nt: 2.8, gap: 5 };
+  const diet = (p) => p.diet || (p.vegan ? 'V, Ve' : '');
+  const cell = (p) => {
+    if (!p) return '<div class="cell empty"></div>';
+    const img = photo(p.photo) ? `<img class="ph" src="${photo(p.photo)}">` : `<div class="ph none"><span>photo<br>to come</span></div>`;
+    return `<div class="cell">${img}<div class="tx">
+      <div class="nm">${esc(p.name)} <span class="pr">$${price(p.price)}</span></div>
+      <div class="ds">${esc(p.desc)}${diet(p) ? ` <b class="dt">${diet(p)}</b>` : ''}</div>${p.note ? `<div class="nt">${esc(p.note)}</div>` : ''}</div></div>`;
+  };
+  const arrow = `<svg class="arr" viewBox="0 0 24 24"><path d="M4 12h13M12 6l6 6-6 6" fill="none" stroke="${C.red}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const row = (r, i) => {
+    const isLadder = ladder === 'all' || i === 0;
+    const cells = r.map(cell);
+    if (!side && !r[1] && !r[2]) return `<div class="row">${cells[0]}<div class="sep"></div><div class="infobox">${info}</div></div>`;
+    return `<div class="row${i === 0 ? ' hero' : ''}">${cells[0]}<div class="sep">${isLadder && r[1] ? arrow : ''}</div>${cells[1]}<div class="sep">${isLadder && r[2] ? arrow : ''}</div>${cells[2]}</div>`;
+  };
+  const sitem = (p) => `<div class="si"><div class="nm">${esc(p.name)} <span class="pr">$${price(p.price)}</span></div><div class="ds">${esc(p.desc)}${diet(p) ? ` <b class="dt">${diet(p)}</b>` : ''}</div></div>`;
+  const checks = (h) => `repeating-conic-gradient(${C.red} 0 25%, ${C.paper} 0 50%) 0 0 / ${h}mm ${h}mm`;
+
+  const css = `
+body { background: ${C.paper}; color: ${C.ink}; font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 14 }
+.page { padding: 8mm 12mm 0; background: ${C.paper} }
+header { display: grid; grid-template-columns: 74mm minmax(0, 1fr) ${side ? '92mm' : '86mm'}; align-items: center; height: ${big ? 40 : 38}mm; column-gap: 8mm }
+.logo { width: 70mm }
+h1 { font-family: 'Lilita One'; font-weight: 400; color: ${C.red}; font-size: ${big ? 23.5 : 22}mm; line-height: .9; text-align: center; text-transform: uppercase;
+  transform: scaleX(.86); letter-spacing: .01em; white-space: nowrap }
+.intro { font-size: 3.05mm; line-height: 1.38; color: ${C.deep}; border-left: .5mm solid ${C.red}; padding-left: 4mm }
+.intro b { display: block; margin-top: 1mm; font-weight: 700; color: ${C.red} }
+.checks { height: 7mm; background: ${checks(7)}; margin: 1mm 0 4mm }
+.body { display: grid; grid-template-columns: 1fr ${side ? '82mm' : ''}; column-gap: 8mm }
+.tiers, .row { display: grid; grid-template-columns: 1fr ${S.gap + 4}mm 1fr ${S.gap + 4}mm 1fr; align-items: center }
+.tiers { margin-bottom: 2mm }
+.tiers .t { justify-self: start; background: ${C.red}; color: ${C.paper}; font-family: 'Lilita One'; font-size: ${big ? 7.4 : 6}mm; line-height: 1;
+  padding: 1.6mm 7mm 2mm; border-radius: 50%/60%; letter-spacing: .02em }
+.tiers .t span { display: inline-block; transform: scaleX(.92) }
+.tiers .t small { font-family: 'Fraunces'; font-style: italic; font-size: .5em; opacity: .9; margin-left: 2mm }
+.tiers .sep { height: .5mm; background: ${C.red}; opacity: .35 }
+.row { height: ${S.row}mm; border-top: .35mm dashed ${C.rule} }
+.row.hero { background: ${C.band}; border-radius: 3mm; border-top: none; margin-bottom: ${big ? 1.5 : .8}mm }
+.row.hero .cell:first-child { padding-left: ${big ? 3 : 2}mm }
+.row.hero + .row { border-top: none }
+.sep { display: grid; place-items: center } .arr { width: ${big ? 7 : 5}mm; height: ${big ? 7 : 5}mm }
+.cell { display: flex; align-items: center; gap: ${big ? 4.5 : 3}mm; min-width: 0 }
+.ph { width: ${S.ph}mm; height: ${S.ph}mm; border-radius: 50%; object-fit: cover; flex: none; box-shadow: 0 .7mm 1.6mm rgba(80,30,10,.28) }
+.ph.none { box-shadow: none; border: .4mm dashed ${C.rule}; display: grid; place-items: center; text-align: center; font-size: ${big ? 2.8 : 2}mm; font-style: italic; color: #b59a7a; line-height: 1.1 }
+.nm { font-weight: 700; font-size: ${S.nm}mm; color: ${C.red}; line-height: 1.1; font-variation-settings: 'opsz' 48, 'SOFT' 50 }
+.pr { white-space: nowrap }
+.ds { font-size: ${S.ds}mm; line-height: 1.28; margin-top: ${big ? 1 : .5}mm; color: ${C.ink} }
+.dt { font-weight: 700; color: ${C.red}; font-size: .9em; white-space: nowrap }
+.nt { font-size: ${S.nt}mm; font-style: italic; color: ${C.deep}; margin-top: .6mm }
+aside { align-self: start }
+aside h3 { font-family: 'Lilita One'; font-weight: 400; font-size: 7mm; color: ${C.paper}; background: ${C.red}; text-align: center; padding: 1.2mm 0 1.6mm; border-radius: 50%/60%; margin-bottom: 2mm }
+aside h3.d { margin-top: 5mm }
+.si { padding: 1.6mm 0; border-bottom: .35mm dashed ${C.rule} } .si .nm { font-size: 4.4mm }
+.note { margin-top: 4.5mm; font-size: 2.9mm; line-height: 1.32; border: .4mm solid ${C.red}; border-radius: 2mm; padding: 2.4mm 3.2mm }
+.note h4 { font-family: 'Lilita One'; font-weight: 400; font-size: 4.2mm; color: ${C.red}; margin-bottom: .6mm }
+.foot { position: absolute; left: 12mm; right: 12mm; bottom: 9mm; display: flex; justify-content: space-between; align-items: flex-end; gap: 10mm; font-size: ${big ? 3.2 : 2.9}mm; color: ${C.deep} }
+.foot b { color: ${C.red} }
+.foot .gf { max-width: ${big ? 190 : 150}mm; line-height: 1.3 }
+.infobox { grid-column: 3 / 6; align-self: center; border: .5mm solid ${C.red}; border-radius: 3mm; padding: 4mm 6mm; font-size: ${S.ds - .2}mm; line-height: 1.35;
+  display: grid; grid-template-columns: 1fr auto; column-gap: 8mm; align-items: center }
+.infobox h4 { font-family: 'Lilita One'; font-weight: 400; font-size: ${S.nm - .6}mm; color: ${C.red}; margin-bottom: .8mm }
+.infobox .legend { font-size: ${S.ds}mm; color: ${C.deep}; line-height: 1.5; white-space: nowrap } .infobox .legend b { color: ${C.red} }
+.bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 5mm; background: ${checks(5)} }`;
+
+  const intro = `${esc(M.brand.intro)}<b>${esc(M.brand.introAsk)}</b>`;
+  const info = `<div><h4>GF bases available</h4>${esc(M.notes.gf.text)}</div><div class="legend"><b>V</b> vegetarian<br><b>Ve</b> vegan<br>Vegan? Just ask.</div>`;
+  const hasInfoRow = !side && rows.some((r) => r[0] && !r[1] && !r[2]);
+  const tierNotes = ['the classic flavours', 'a little more', 'everything on it'];
+  return head(`il Mercato Centrale — ${title}`, css) + `
+<div class="page">
+  <header>
+    <img class="logo" src="../brand/il-mercato-logo.png">
+    <h1>${esc(title)}</h1>
+    <div class="intro">${intro}</div>
+  </header>
+  <div class="checks"></div>
+  <div class="body">
+    <main>
+      <div class="tiers">${F.tiers.map((t, i) => `<div class="t"><span>${t}</span><small>${tierNotes[i]}</small></div>`).join('<div class="sep"></div>')}</div>
+      ${rows.map(row).join('')}
+    </main>
+    ${side ? `<aside>
+      <h3>Focaccia</h3>${M.focaccia.map(sitem).join('')}
+      <h3 class="d">Dolce</h3>${M.dolce.map(sitem).join('')}
+      <div class="note"><h4>Vegan? Just ask</h4>${esc(M.notes.vegan.text)}</div>
+      <div class="note"><h4>GF bases available</h4>${esc(M.notes.gf.text)}</div>
+    </aside>` : ''}
+  </div>
+  ${hasInfoRow ? '' : `<div class="foot"><div></div><div><b>V</b> vegetarian · <b>Ve</b> vegan</div></div>`}
+  <div class="bottom"></div>
+</div></body></html>`;
+}
+const mercatoLong = () => mercato({ title: 'Pizza Napoletana', rows: M.pizzas, ladder: 'all', side: true, big: false });
+const mercatoFinal = () => mercato({ title: 'Pizza Napoletana', rows: F.pizzas, ladder: 'first', side: false, big: true });
+
 // ---------- render ----------
-const VARIANTS = { a: variantA, b: variantB, c: variantC };
+const VARIANTS = { a: variantA, b: variantB, c: variantC, 'mercato-long': mercatoLong, 'mercato-final': mercatoFinal };
 
 (async () => {
   const want = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(VARIANTS);
