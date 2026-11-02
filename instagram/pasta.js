@@ -89,7 +89,7 @@ h2 { position: absolute; left: 0; right: 0; top: 880px; text-align: center; colo
  <img class="plate hero" src="${PH}gnocchi-sorrentina.jpg">
  <div class="edge"></div>
  <h2 class="lilita">House-made<br>gnocchi</h2>
- <div class="txt">Soft potato gnocchi, made in-house. Have them with any of our sauces, or baked <b>Sorrentina-style in a focaccia bowl</b>.</div>
+ <div class="txt">Soft potato gnocchi, made in-house by <b>Daniele</b>. Have them with any of our sauces, or baked <b>Sorrentina-style in a focaccia bowl</b>.</div>
  <div class="swipe">Swipe &rarr;</div>`);
 
 // 4 · Engagement grid.
