@@ -8,5 +8,10 @@ A 5-slide carousel (1080×1350, Instagram's 4:5 portrait size) to open the pizze
 4. **What's your pick?** nine pizzas, asking for comments
 5. **Follow for more** end card (also usable as the last frame of a Reel)
 
-`caption.txt` has the post caption and hashtags. Rebuild with `node build.js`; it reuses fonts from `../halloween-poster/fonts`,
+`caption.txt` has the post caption and hashtags.
+
+**Pasta carousel** (`node pasta.js` → `output-pasta/`, caption in `caption-pasta.txt`): Pasta Fresca hook, Your pasta your way
+(pick pasta → sauce → extras), House-made gnocchi with the Sorrentina focaccia bowl, What's your pick?, and the Follow end card.
+Photos are cut from the old Canva menus and promo posters into `photos-pasta/` by `cut_pasta.py`.
+ Rebuild with `node build.js`; it reuses fonts from `../halloween-poster/fonts`,
 photos from `../pizza-menu/photos` and `../halloween-poster/photos`, and the logo from `../pizza-menu/brand`.
