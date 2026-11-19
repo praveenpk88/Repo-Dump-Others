@@ -1,0 +1,78 @@
+<!doctype html><html><head><meta charset="utf-8"><title>il Mercato Centrale — Gnocchi</title>
+<link rel="stylesheet" href="../../pizza-menu/fonts/fonts.css">
+<style>
+@page { size: 210mm 297mm; margin: 0 }
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html, body { width: 210mm; height: 297mm; background: #FDFBEF }
+body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Fraunces', serif; color: #B8141B }
+.page { width: 210mm; height: 297mm; position: relative; overflow: hidden; background: #FDFBEF }
+img { display: block; position: absolute }
+.logo { left: 13mm; top: 6.5mm; width: 65mm }
+h1 { position: absolute; left: 141.83mm; top: 24.50mm; transform: translate(-50%, -50%) scaleX(.86);
+  font-family: 'Lilita One'; font-weight: 400; font-size: 16.5mm; line-height: 1; color: #C40001; text-transform: uppercase; white-space: nowrap }
+.checks { position: absolute; left: 7.72mm; width: 190.99mm; top: 39.80mm; height: 9.21mm;
+  background: repeating-conic-gradient(#C40001 0 25%, #FDFBEF 0 50%) 0 0 / 9.21mm 9.21mm }
+.sub { position: absolute; left: 0; right: 0; top: 51.98mm; text-align: center; font-size: 4.6mm; font-weight: 650; color: #C40001 }
+.it { position: absolute; z-index: 2 }
+.nm { font-size: 6.6mm; font-weight: 600; color: #C40001; line-height: 1.15; white-space: nowrap; font-variation-settings: 'opsz' 72, 'SOFT' 100, 'WONK' 0 }
+.ds { font-size: 4.35mm; font-weight: 560; line-height: 1.32; margin-top: .6mm; padding-left: 2.6mm; font-variation-settings: 'opsz' 24, 'SOFT' 100 }
+.ds b { font-weight: 700 }
+.ex { font-size: 3.4mm; font-weight: 600; padding-left: 2mm; margin-top: .2mm }
+.nt { font-size: 3.6mm; font-weight: 600; margin-top: 1.4mm; padding-left: 1.2mm }
+.foot { position: absolute; right: 7.5mm; bottom: 5.8mm; font-size: 3.6mm; font-weight: 650; color: #C40001 }
+</style></head><body><div class="page">
+  <img class="logo" src="../../pizza-menu/brand/il-mercato-logo.png">
+  <h1>Gnocchi</h1>
+  <div class="checks"></div>
+  <div class="sub">Order your gnocchi with any of our pasta sauces!</div>
+  <img class="decor" src="../photos/strokes-top.png" style="left:187.43mm; top:256.93mm" data-px="strokes-top"><img class="decor" src="../photos/strokes-bottom.png" style="left:164.85mm; top:279.21mm" data-px="strokes-bottom">
+  
+    <img class="ph" src="../photos/gnocchi-carbonara.png" style="left:6.24mm; top:64.16mm" data-px="gnocchi-carbonara">
+    <div class="it" style="left:60.59mm; top:69.06mm; width:137.67mm">
+      <div class="nm">Gnocchi Carbonara $26.50</div>
+      
+      <div class="ds">House-made gnocchi, tossed in a rich egg yolk, parmesan and pecorino sauce finished with a dash of cream.</div>
+      
+    </div>
+    <img class="ph" src="../photos/gnocchi-classico.png" style="left:34.16mm; top:99.80mm" data-px="gnocchi-classico">
+    <div class="it" style="left:85.54mm; top:106.19mm; width:112.72mm">
+      <div class="nm">Gnocchi Classico $20.50</div>
+      
+      <div class="ds">House-made gnocchi tossed in a rich tomato sauce, topped up with stracciatella and a fresh basil leaf. <b>V</b></div>
+      
+    </div>
+    <img class="ph" src="../photos/gnocchi-amatriciana.png" style="left:6.24mm; top:139.60mm" data-px="gnocchi-amatriciana">
+    <div class="it" style="left:59.70mm; top:146.58mm; width:138.56mm">
+      <div class="nm">Gnocchi Amatriciana $25.50</div>
+      
+      <div class="ds">Gnocchi tossed in a rich tomato and pork sauce, finished off with guanciale and pecorino.</div>
+      
+    </div>
+    <img class="ph" src="../photos/gnocchi-bolognese.png" style="left:36.24mm; top:174.95mm" data-px="gnocchi-bolognese">
+    <div class="it" style="left:89.11mm; top:180.45mm; width:109.16mm">
+      <div class="nm">Gnocchi Bolognese $27.50</div>
+      
+      <div class="ds">House-made gnocchi tossed in a rich, slow-simmered beef ragu.</div>
+      
+    </div>
+    <img class="ph" src="../photos/gnocchi-pesto.png" style="left:7.13mm; top:210.89mm" data-px="gnocchi-pesto">
+    <div class="it" style="left:60.89mm; top:219.36mm; width:137.38mm">
+      <div class="nm">Gnocchi al Pesto $22.50</div>
+      
+      <div class="ds">Homemade potato gnocchi with basil pesto, semi-dried cherry tomatoes and stracciatella. <b>V</b></div>
+      
+    </div>
+    <img class="ph" src="../photos/gnocchi-sorrentina.png" style="left:33.86mm; top:250.99mm" data-px="gnocchi-sorrentina">
+    <div class="it" style="left:99.21mm; top:254.70mm; width:99.06mm">
+      <div class="nm">Gnocchi Sorrentina $23.50</div>
+      <div class="ex">+ $2.50 Focaccia Bowl</div>
+      <div class="ds">Homemade potato gnocchi baked with Napoli sauce and mozzarella cheese. <b>V</b></div>
+      
+    </div>
+  
+</div>
+<script>
+  // Size each cut at its natural pixel size, scaled to mm, so it lands exactly where it was on the Canva page.
+  for (const el of document.querySelectorAll('img[data-px]'))
+    el.onload = () => { el.style.width = (el.naturalWidth * 0.1485148514851485) + 'mm'; };
+</script></body></html>
