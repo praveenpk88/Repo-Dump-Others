@@ -29,8 +29,16 @@ BOXES = {
     'strokes-bottom': (5, 1110, 1880, 1414, 2000, 'lt'),
 }
 
+# Areas painted cream before cutting, to remove bits of a neighbouring plate: polygons in page pixels.
+CLEAN = {  # the pesto plate's rim above the Sorrentina bowl, following its curve so the bowl and its plate stay intact
+    'gnocchi-sorrentina': [[(228, 1690), (366, 1690), (336, 1706), (300, 1721), (262, 1731), (228, 1739)]],
+}
+
 for name, (page, x0, y0, x1, y1, sides) in BOXES.items():
-    im = Image.open(f'{src}/{page}.jpg').convert('RGB').crop((x0, y0, x1, y1))
+    im = Image.open(f'{src}/{page}.jpg').convert('RGB')
+    for poly in CLEAN.get(name, []):
+        ImageDraw.Draw(im).polygon(poly, fill=(253, 251, 239))
+    im = im.crop((x0, y0, x1, y1))
     w, h = im.size
     l, t, r, b = (FEATHER if s in sides else 0 for s in 'ltrb')
     a = Image.new('L', (w, h), 0)

@@ -91,6 +91,7 @@ h1 { position: absolute; left: ${mm(M.titleAt[0])}; top: ${mm(M.titleAt[1])}; tr
   background: repeating-conic-gradient(${C.red} 0 25%, ${C.paper} 0 50%) 0 0 / ${mm(62)} ${mm(62)} }
 .sub { position: absolute; left: 0; right: 0; top: ${mm(M.subtitleTop || 0)}; text-align: center; font-size: 4.6mm; font-weight: 650; color: ${C.red} }
 .it { position: absolute; z-index: 2 }
+img[data-px="gnocchi-pesto"] { z-index: 1 } /* its rim overlaps the Sorrentina cut, where cut_photos.py painted it out */
 .nm { font-size: 6.6mm; font-weight: 600; color: ${C.red}; line-height: 1.15; white-space: nowrap; font-variation-settings: 'opsz' 72, 'SOFT' 100, 'WONK' 0 }
 .ds { font-size: 4.35mm; font-weight: 560; line-height: 1.32; margin-top: .6mm; padding-left: 2.6mm; font-variation-settings: 'opsz' 24, 'SOFT' 100 }
 .ds b { font-weight: 700 }
