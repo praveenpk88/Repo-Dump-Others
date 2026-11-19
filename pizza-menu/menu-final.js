@@ -29,8 +29,10 @@ module.exports = {
     ],
     [
       { name: 'Vegetarian', price: 27.5, desc: 'Zucchini cream base with seasonal vegetables & EVOO', diet: 'V', photo: 'vegetariana' },
-      // Price and photo to confirm with the manager (null prints as a yellow XX).
-      { name: 'Nutella Pizza', price: null, desc: 'Nutella & powdered sugar', diet: 'V', tag: 'Dolce' },
+      // Nutella Pizza is on hold until the manager confirms the price. To add it, replace the null below with:
+      // { name: 'Nutella Pizza', price: <price>, desc: 'Nutella & powdered sugar', diet: 'V', tag: 'Dolce' },
+      // (add photo: '<file in photos/>' if there is one), then run node build.js mercato-final and node ../render-final.js
+      null,
       null,
     ],
   ],

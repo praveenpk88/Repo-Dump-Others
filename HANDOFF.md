@@ -25,9 +25,36 @@ Context for the next agent. Read this first, then the README in each project fol
 - Photos are cut from images with small Python scripts (`cut_*.py`, run with `python3 -I`).
 - Caption `.txt` files must be saved as **UTF-8 with BOM**. Without it the user's app showed emojis as Chinese characters.
 
+## Latest status (19 Nov 2026): pizza and pasta menus FINISHED, print-ready
+
+**Final files: `final/pizza-A3.pdf` and `final/pasta-gnocchi-A3.pdf`** (A3 landscape, vector text), plus 300 dpi PNGs
+(4961 × 3510). Rebuild them with `node render-final.js` from the repo root after rebuilding the source menu.
+- **Pizza:** `pizza-menu/output/variant-mercato-final` (Classic → Level up → Go all in, 13 pizzas). The manager chose this one.
+  Rebuild: `cd pizza-menu && node build.js mercato-final`.
+- **Pasta & Gnocchi:** `pasta-menu/output/sidebar-a` (Veggie / With meat / Al forno rows for Pasta and Gnocchi, a red sidebar
+  with "Pick your shape" (6 illustrated shapes) and "Create your own" (parmesan or zucchini cream base + add-ons), and the $10 Monday special).
+  Rebuild: `cd pasta-menu && node sidebar.js a`. The print version uses 2x photos from `pasta-menu/photos-hd` (`python -I upscale_photos.py`).
+- **Prices:** every pizza, pasta and gnocchi price went up 50 cents (e.g. Margherita $22.50). Not changed: add-ons, the $10 Monday
+  special, the +$2.50 focaccia bowl. Create your own is $22.50 (was $22).
+- **Pappardelle icon:** flat smooth ribbons (`PAPPARDELLE.flat` in `pasta-menu/shapes.js`). The user rejected the crimped versions.
+- **Daniele is not named** on the pasta menu (user's request).
+- Many explored versions are still in the output folders (combo, combo2, combo3, columns, steps, levelup, sidebar-b). They are drafts, not the finals.
+
+**On hold, the user will come back to it:**
+- **Nutella Pizza:** don't add it until the manager confirms the price. `menu-final.js` has a comment with the exact line to add.
+  `build.js` already supports a `tag: 'Dolce'` item in the last row (the GF box then moves to the third column).
+
+**Suggestions given to the user, not applied (they chose to print as is):** match the price style across the two boards,
+an allergy line on the pizza menu, an Instagram QR code, and showing gnocchi / gluten-free surcharges if any, focaccia and
+desserts, and pizza add-ons. Napoletana still lists no tomato. High-res photographer photos would make the prints sharper.
+
+**Work setup on the user's Windows PC:** repo cloned at `D:\Mercato\Menu\Repo-Dump-Others`; Playwright is installed in
+`D:\Mercato\Menu` (outside the repo). The source Canva images (zip) are not in the repo; page 4 = Pasta Fresca, 5 = Gnocchi,
+6 = Create your own poster. The zip is damaged (11 broken, 12 and 13 missing).
+
 ## Projects
 
-### 1. Pizza menu redesign: IN PROGRESS (main ongoing task)
+### 1. Pizza menu redesign: DONE (see Latest status above; notes below are the earlier history)
 Folder `pizza-menu/`. Build with `node build.js [variant]`.
 
 **Requirements**
