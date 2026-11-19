@@ -28,3 +28,8 @@ Everything is sized in mm, so the PDFs scale cleanly to A2/A1.
 - **Photos:** `photos/` holds square JPGs cut from the old Canva menus by `cut_photos.py`. Swap in Samuele's new photos
   using the same file names, then add `photo: '<name>'` to the item in `menu-data.js`.
 - **Fonts:** `fonts/` (Google Fonts, OFL): Cormorant Garamond, EB Garamond, DM Serif Display, Lora, Oswald, Fraunces, Cinzel, Mrs Saint Delafield.
+
+**Step-by-step version** (`node steps.js` → `output/variant-steps.*`), in the style of the Pasta & Gnocchi menu (`../pasta-menu`, version 3):
+1 Pick your base (Samuele's dough or gluten-free), 2 Pick your pizza in Rossa (tomato base) and Bianca (white base) rows,
+with Margherita → Bufalina → Prosciutto highlighted as "Same pizza, level it up". Uses `menu-final.js` (13 pizzas, prices +50c).
+Napoletana sits in Bianca because its description lists no tomato; its photo shows tomato, so check with the manager.

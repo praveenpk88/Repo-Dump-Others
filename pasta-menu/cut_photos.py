@@ -24,6 +24,8 @@ BOXES = {
     'gnocchi-bolognese': (5, 244, 1178, 596, 1448, 'ltrb'),
     'gnocchi-pesto': (5, 48, 1420, 398, 1740, 'ltrb'),
     'gnocchi-sorrentina': (5, 228, 1690, 664, 1950, 'ltrb'),
+    # "Create your own" poster (6.jpg): the parmesan cream rigatoni, on a red background (the ellipse mask in combo2.js hides it)
+    'create-cream': (6, 10, 540, 860, 1360, 'ltrb'),
     # Brush strokes in the bottom-right corner, in two pieces that stay clear of the old Sorrentina text.
     'strokes-top': (5, 1262, 1730, 1414, 1892, 'lt'),
     'strokes-bottom': (5, 1110, 1880, 1414, 2000, 'lt'),

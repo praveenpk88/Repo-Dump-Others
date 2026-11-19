@@ -19,7 +19,10 @@ const money = (p) => (Number.isInteger(p) ? String(p) : p.toFixed(2));
 // Content. kind: veg | meat | forno (what's in it). sauce: rosso | bianco | ragu (sauce colour).
 // ---------------------------------------------------------------------------------------------
 const TITLE = 'Pasta & Gnocchi';
-const INTRO = 'Pasta fresca, cooked to order, and gnocchi made in-house by our pasta chef Daniele.';
+const INTRO = 'Pasta fresca and house-made gnocchi, your way.';
+// From the "Create your own" poster. $22 there, +50c like the rest of the menu; add-ons unchanged.
+const CREATE = { name: 'Create your own', price: 22.5, photo: 'create-cream', base: 'Parmesan cream or zucchini cream base',
+  adds: [["'Nduja", 2], ['Mushrooms', 2.5], ['Prawns', 4], ['Chicken', 4]] };
 const SHAPES = ['Rigatoni', 'Spaghetti', 'Fusilli', 'Pappardelle', 'Gnocchi', 'Gluten-free gnocchi'];
 const SWAP = 'Swap any dish to any shape, except the lasagna.';
 const MONDAY = '$10 Rigatoni alla Vodka every Monday';
@@ -164,9 +167,10 @@ const version2 = () => columnsVersion(BY_SAUCE, '2');
 // with the photo on top ("2 Pick your dish"), cheapest first. No columns to explain.
 // =============================================================================================
 function version3() {
-  const card = (p) => `<div class="card"><div class="pw">${photo(p.photo, WIDE[p.photo] ? 28 : 33)}</div>
+  const card = (p) => `<div class="card"><div class="pw">${photo(p.photo, WIDE[p.photo] ? 28 : 33)}${
+    /Monday/.test(p.note || '') ? '<div class="sticker"><b>$10</b>Mondays</div>' : ''}</div>
     <div class="nm">${esc(p.name)}</div><div class="price">$${money(p.price)}${diet(p)}</div>
-    <div class="ds">${esc(p.desc)}</div>${p.note ? `<div class="nt">${esc(p.note)}</div>` : ''}</div>`;
+    <div class="ds">${esc(p.desc)}</div>${p.note && !/Monday/.test(p.note) ? `<div class="nt">${esc(p.note)}</div>` : ''}</div>`;
   const css = `
 .step { display: flex; align-items: center; gap: 3mm; margin-bottom: 2mm }
 .step b { width: 9mm; height: 9mm; border-radius: 50%; background: ${C.red}; color: ${C.paper}; display: grid; place-items: center; font-family: 'Lilita One'; font-weight: 400; font-size: 5.6mm }
@@ -188,23 +192,34 @@ function version3() {
 .card .price .dt { color: ${C.paper}; font-family: 'Fraunces'; margin-left: 1mm; opacity: .9 }
 .card .ds { font-size: 3.35mm; line-height: 1.25 }
 .card .nt { font-size: 3.1mm; margin-top: .6mm }
-.info { grid-column: span 2; align-self: center; height: 64mm; background: ${C.band}; border-radius: 3mm; padding: 4mm 6mm; display: flex; align-items: center; gap: 6mm }
-.info p { font-size: 3.7mm; line-height: 1.45; color: ${C.deep} } .info p b { color: ${C.red} }
-.info h4 { font-family: 'Lilita One'; font-weight: 400; color: ${C.red}; font-size: 6mm; line-height: 1; margin-bottom: 1.5mm }
-.badge { flex: none; width: 38mm; height: 38mm; border-radius: 50%; background: ${C.red}; color: ${C.paper}; display: grid; place-items: center; text-align: center; transform: rotate(-8deg);
-  box-shadow: 0 0 0 1.2mm ${C.band}, 0 0 0 1.6mm ${C.red} }
-.badge b { display: block; font-family: 'Lilita One'; font-weight: 400; font-size: 13mm; line-height: .9 }
-.badge span { display: block; font-size: 3.1mm; font-weight: 700; line-height: 1.15; padding: 0 3mm }`;
+.card .pw { position: relative }
+.sticker { position: absolute; right: -3mm; top: -1mm; width: 15mm; height: 15mm; border-radius: 50%; background: ${C.red}; color: ${C.paper}; transform: rotate(10deg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 2.5mm; font-weight: 700; line-height: 1; box-shadow: 0 0 0 .7mm ${C.paper} }
+.sticker b { font-family: 'Lilita One'; font-weight: 400; font-size: 5.6mm; line-height: .95 }
+.create { grid-column: span 2; align-self: center; height: 66mm; background: ${C.red}; color: ${C.paper}; border-radius: 3mm; padding: 4mm 5mm 4mm 4mm;
+  display: grid; grid-template-columns: 31mm 1fr; column-gap: 4.5mm; align-items: center }
+.create .ph { height: 31mm; -webkit-mask-image: radial-gradient(ellipse closest-side, #000 86%, transparent 97%) }
+.create .phw { width: 31mm; height: 31mm; border-radius: 50%; background: ${C.paper}; display: grid; place-items: center; overflow: hidden; box-shadow: 0 0 0 1mm rgba(253,251,239,.35) }
+.create h4 { font-family: 'Lilita One'; font-weight: 400; font-size: 6.4mm; line-height: 1; white-space: nowrap }
+.create .price { display: inline-block; background: ${C.paper}; color: ${C.red}; font-family: 'Lilita One'; font-size: 5mm; padding: .5mm 3mm .9mm; border-radius: 4mm; line-height: 1; margin-top: 1.4mm }
+.create .base { font-size: 3.35mm; font-style: italic; line-height: 1.3; margin: 1.6mm 0 2mm; opacity: .95 }
+.create .add { font-weight: 700; font-size: 2.9mm; margin-bottom: .6mm; letter-spacing: .06em; text-transform: uppercase; opacity: .85 }
+.create ul { list-style: none; font-size: 3.4mm; line-height: 1.4 }
+.create li { white-space: nowrap } .create li::before { content: '× '; font-family: 'Lilita One'; opacity: .8 }
+.create .leg { margin-top: 1.8mm; font-size: 2.9mm; opacity: .8 }`;
   const sorted = (items) => [...items].sort((a, b) => a.price - b.price);
   return head(`il Mercato Centrale — ${TITLE} (3)`, css) + `
   <div class="step"><b>1</b><h3>Pick your shape</h3><span>Any dish, any shape, except the lasagna</span></div>
   <div class="shapes">${SHAPES.map((s) => `<div class="sh${/Gluten/.test(s) ? ' gf' : ''}"><div class="ic">${SHAPE_SVG[s]()}</div><span>${esc(s)}</span></div>`).join('')}</div>
   <div class="step"><b>2</b><h3>Pick your dish</h3></div>
   <div class="rows">
-    <div class="lab"><span>Pasta</span></div><div class="cards">${sorted(PASTA).map((p) => card({ ...p, note: '' })).join('')}</div>
+    <div class="lab"><span>Pasta</span></div><div class="cards">${sorted(PASTA).map((p) => card({ ...p, note: /Monday/.test(p.note || '') ? p.note : '' })).join('')}</div>
     <div class="lab"><span>Gnocchi</span></div><div class="cards">${sorted(GNOCCHI).map(card).join('')}
-      <div class="info"><div class="badge"><div><b>$10</b><span>Rigatoni alla Vodka every Monday</span></div></div>
-        <div><h4>Mondays!</h4><p>Our Rigatoni alla Vodka is <b>$10</b> all day.<br><b>V</b> vegetarian</p></div></div></div>
+      <div class="create"><div class="phw">${photo(CREATE.photo, 38)}</div><div>
+        <h4>${esc(CREATE.name)}</h4><div class="price">$${money(CREATE.price)}</div>
+        <div class="base">${esc(CREATE.base)}</div>
+        <div class="add">Add</div><ul>${CREATE.adds.map(([n, p]) => `<li>${esc(n)} $${money(p)}</li>`).join('')}</ul>
+        <div class="leg">V vegetarian</div></div></div></div>
   </div>` + foot;
 }
 
