@@ -11,7 +11,7 @@ const PAGE = { w: 420, h: 297 }; // mm, A3 landscape. Everything is laid out in 
 
 // ---------- shared bits ----------
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
-const price = (p) => (p == null ? '<span class="tbc">XX</span>' : String(p));
+const price = (p) => (p == null ? '<span class="tbc">XX</span>' : Number.isInteger(p) ? String(p) : p.toFixed(2)); // 22.5 → "22.50"
 const photo = (name) => (name ? `../photos/${name}.jpg` : null);
 
 const leaf = (c = 'currentColor') =>

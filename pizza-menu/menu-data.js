@@ -20,52 +20,52 @@ module.exports = {
   // Each row reads left to right: the classic, a small twist, then fully loaded.
   pizzas: [
     [
-      { name: 'Margherita', price: 22, desc: 'San Marzano tomato, Napoli-cut fior di latte, basil & EVOO', photo: 'margherita' },
-      { name: 'Bufalina', price: 26, desc: '+ Buffalo mozzarella', photo: 'bufalina' },
-      { name: 'Prosciutto', price: 30, desc: '+ Prosciutto & buffalo mozzarella', photo: 'prosciutto' },
+      { name: 'Margherita', price: 22.5, desc: 'San Marzano tomato, Napoli-cut fior di latte, basil & EVOO', photo: 'margherita' },
+      { name: 'Bufalina', price: 26.5, desc: '+ Buffalo mozzarella', photo: 'bufalina' },
+      { name: 'Prosciutto', price: 30.5, desc: '+ Prosciutto & buffalo mozzarella', photo: 'prosciutto' },
     ],
     [
-      { name: 'Marinara', price: 18, desc: 'San Marzano tomato, oregano & garlic oil', vegan: true, photo: 'marinara' },
-      { name: 'Acchugina', price: 20, desc: '+ Anchovies' },
-      { name: 'Napoletana', price: 25, desc: '+ Anchovies, olives & mozzarella', photo: 'napoletana' },
+      { name: 'Marinara', price: 18.5, desc: 'San Marzano tomato, oregano & garlic oil', vegan: true, photo: 'marinara' },
+      { name: 'Acchugina', price: 20.5, desc: '+ Anchovies' },
+      { name: 'Napoletana', price: 25.5, desc: '+ Anchovies, olives & mozzarella', photo: 'napoletana' },
     ],
     [
-      { name: 'Salsiccia e Patate', price: 28, desc: 'Creamy base of Napoli-cut fior di latte, salsiccia & herb-roasted potatoes', photo: 'salsiccia-patate' },
-      { name: 'Fungaiola', price: 29, desc: '+ Mushroom' },
+      { name: 'Salsiccia e Patate', price: 28.5, desc: 'Creamy base of Napoli-cut fior di latte, salsiccia & herb-roasted potatoes', photo: 'salsiccia-patate' },
+      { name: 'Fungaiola', price: 29.5, desc: '+ Mushroom' },
       { name: 'Sotto Bosco', price: null, desc: '+ Mushroom & ‘Flavour Bomb’ truffle cheddar' },
     ],
     [
-      { name: 'La Porcona Rossa', price: 30, desc: 'San Marzano tomato, mozzarella, salsiccia, ham & salame', photo: 'porcona-rossa' },
-      { name: 'La Porcona Bianca', price: 30, desc: 'Switch it up with a creamy mozzarella base' },
-      { name: 'Porcaccia', price: 32, desc: '+ Crispy guanciale & ‘Flavour Bomb’ truffle cheddar' },
+      { name: 'La Porcona Rossa', price: 30.5, desc: 'San Marzano tomato, mozzarella, salsiccia, ham & salame', photo: 'porcona-rossa' },
+      { name: 'La Porcona Bianca', price: 30.5, desc: 'Switch it up with a creamy mozzarella base' },
+      { name: 'Porcaccia', price: 32.5, desc: '+ Crispy guanciale & ‘Flavour Bomb’ truffle cheddar' },
     ],
     [
-      { name: 'Cotto e Funghi', price: 26, desc: 'San Marzano tomato, mozzarella, ham & mushroom', note: 'Swap the ham for chicken' },
-      { name: 'Capricciosa', price: 30, desc: '+ Artichoke & olives', photo: 'capricciosa' },
+      { name: 'Cotto e Funghi', price: 26.5, desc: 'San Marzano tomato, mozzarella, ham & mushroom', note: 'Swap the ham for chicken' },
+      { name: 'Capricciosa', price: 30.5, desc: '+ Artichoke & olives', photo: 'capricciosa' },
       { name: 'Capricchuga', price: null, desc: '+ Anchovies' },
     ],
     [
-      { name: 'Diavola', price: 28, desc: 'San Marzano tomato, mozzarella, salame & olives', photo: 'diavola' },
-      { name: 'Lucifero', price: 30, desc: '+ ’Nduja' },
+      { name: 'Diavola', price: 28.5, desc: 'San Marzano tomato, mozzarella, salame & olives', photo: 'diavola' },
+      { name: 'Lucifero', price: 30.5, desc: '+ ’Nduja' },
       { name: 'Purgatorio', price: null, desc: '+ ’Nduja & stracciatella' },
     ],
     [
-      { name: 'Gamberi', price: 28, desc: 'Zucchini cream, cherry tomato, mozzarella, parsley & prawns', photo: 'gamberi' },
-      { name: 'Spishrimps', price: 30, desc: 'Stracciatella replaces mozzarella, + ’nduja' },
+      { name: 'Gamberi', price: 28.5, desc: 'Zucchini cream, cherry tomato, mozzarella, parsley & prawns', photo: 'gamberi' },
+      { name: 'Spishrimps', price: 30.5, desc: 'Stracciatella replaces mozzarella, + ’nduja' },
       null,
     ],
     [
-      { name: 'Mortadella', price: 30, desc: 'Creamy mozzarella base, mortadella, stracciatella & pistachio', photo: 'mortadella' },
+      { name: 'Mortadella', price: 30.5, desc: 'Creamy mozzarella base, mortadella, stracciatella & pistachio', photo: 'mortadella' },
       { name: 'Bombadella', price: null, desc: '+ ‘Flavour Bomb’ truffle cheddar' },
       null,
     ],
     [
-      { name: 'Hamsorry', price: 26, desc: 'San Marzano tomato, mozzarella, ham & pineapple', photo: 'hamsorry' },
-      { name: 'Hambetter', price: 28, desc: 'Go bianca + guanciale' },
+      { name: 'Hamsorry', price: 26.5, desc: 'San Marzano tomato, mozzarella, ham & pineapple', photo: 'hamsorry' },
+      { name: 'Hambetter', price: 28.5, desc: 'Go bianca + guanciale' },
       null,
     ],
     [
-      { name: 'Vegetariana', price: 27, desc: 'Zucchini cream, artichoke, mozzarella, potato, capsicum & eggplant', photo: 'vegetariana', note: 'Add chicken +XX' },
+      { name: 'Vegetariana', price: 27.5, desc: 'Zucchini cream, artichoke, mozzarella, potato, capsicum & eggplant', photo: 'vegetariana', note: 'Add chicken +XX' },
       null,
       null,
     ],
@@ -77,8 +77,8 @@ module.exports = {
   ],
 
   focaccia: [
-    { name: 'Focaccia', price: 14, desc: 'Fluffy dough, herbs & EVOO', vegan: true },
-    { name: 'Cheesy Garlic', price: 16, desc: '+ Mozzarella & garlic oil', photo: 'cheesy-garlic' },
+    { name: 'Focaccia', price: 14.5, desc: 'Fluffy dough, herbs & EVOO', vegan: true },
+    { name: 'Cheesy Garlic', price: 16.5, desc: '+ Mozzarella & garlic oil', photo: 'cheesy-garlic' },
   ],
 
   dolce: [
