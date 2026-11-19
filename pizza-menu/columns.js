@@ -131,7 +131,9 @@ h1 { font-family: 'Lilita One'; font-weight: 400; color: ${C.red}; font-size: 23
 </div></body></html>`;
 }
 
-(async () => {
+module.exports = { C, PAGE, esc, money, M, all, COLUMNS, NOTES, pizzaSvg }; // shared with columns3.js
+
+if (require.main === module) (async () => {
   fs.mkdirSync(OUT, { recursive: true });
   const browser = await chromium.launch();
   const pxW = Math.round((PAGE.w / 25.4) * 96), pxH = Math.round((PAGE.h / 25.4) * 96);

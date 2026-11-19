@@ -37,3 +37,11 @@ Every version has illustrated shapes on top, drawn in `shapes.js` (SVG, so they 
 
 Prices raised by 50 cents from the Canva versions (Nov 2026). Not changed: the $10 Monday Special and the +$2.50 focaccia bowl.
 Typos fixed from Canva: Papardelle → Pappardelle, vegetabels → vegetables, ricotta salatta → ricotta salata.
+
+### Round 3 (treatments of version 1)
+
+`node combo3.js` → `output/combo3-1.*`, `-2.*`, `-3.*`. Create your own gets a big panel with both bases photographed
+(`photos/create-parmesan.png`, `photos/create-zucchini.png`, cut from the Create your own poster).
+1 · Refined (full-width red panel along the bottom) · 2 · Sidebar (red sidebar with shapes and Create your own) ·
+3 · Poster (red header with the blue oval, cream card columns, round price badge).
+Matching pizza treatments: `../pizza-menu/columns.js` (1) and `../pizza-menu/columns3.js` (2 and 3).

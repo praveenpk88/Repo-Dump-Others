@@ -240,7 +240,10 @@ function version3() {
 
 const VERSIONS = { 1: version1, 2: version2, 3: version3 };
 
-(async () => {
+// Shared with combo3.js (round 3 treatments).
+module.exports = { C, PAGE, esc, money, TITLE, INTRO, SHAPES, CREATE, PASTA, GNOCCHI, ROWS, BY_KIND, MASK, WIDE, photo, diet };
+
+if (require.main === module) (async () => {
   const want = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(VERSIONS);
   fs.mkdirSync(OUT, { recursive: true });
   const browser = await chromium.launch();

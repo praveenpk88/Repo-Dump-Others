@@ -26,6 +26,9 @@ BOXES = {
     'gnocchi-sorrentina': (5, 228, 1690, 664, 1950, 'ltrb'),
     # "Create your own" poster (6.jpg): the parmesan cream rigatoni, on a red background (the ellipse mask in combo2.js hides it)
     'create-cream': (6, 10, 540, 860, 1360, 'ltrb'),
+    # Square crops centred on each plate, for round frames (the ellipse mask hides the poster background)
+    'create-parmesan': (6, 52, 570, 812, 1330, 'ltrb'),
+    'create-zucchini': (6, 635, 1150, 1295, 1810, 'ltrb'),
     # Brush strokes in the bottom-right corner, in two pieces that stay clear of the old Sorrentina text.
     'strokes-top': (5, 1262, 1730, 1414, 1892, 'lt'),
     'strokes-bottom': (5, 1110, 1880, 1414, 2000, 'lt'),
