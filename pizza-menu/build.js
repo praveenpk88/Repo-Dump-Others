@@ -356,14 +356,16 @@ function mercato({ title, rows, ladder, side, big }) {
     if (!p) return '<div class="cell empty"></div>';
     const img = photo(p.photo) ? `<img class="ph" src="${photo(p.photo)}">` : `<div class="ph none"><span>photo<br>to come</span></div>`;
     return `<div class="cell">${img}<div class="tx">
-      <div class="nm">${esc(p.name)} <span class="pr">$${price(p.price)}</span></div>
+      ${p.tag ? `<div class="tag">${esc(p.tag)}</div>` : ''}<div class="nm">${esc(p.name)} <span class="pr">$${price(p.price)}</span></div>
       <div class="ds">${esc(p.desc)}${diet(p) ? ` <b class="dt">${diet(p)}</b>` : ''}</div>${p.note ? `<div class="nt">${esc(p.note)}</div>` : ''}</div></div>`;
   };
+  const isInfoRow = (r) => r[0] && !r[2] && (!r[1] || r[1].tag); // last row: one pizza (+ an optional dolce) and the info box
   const arrow = `<svg class="arr" viewBox="0 0 24 24"><path d="M4 12h13M12 6l6 6-6 6" fill="none" stroke="${C.red}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   const row = (r, i) => {
     const isLadder = ladder === 'all' || i === 0;
     const cells = r.map(cell);
-    if (!side && !r[1] && !r[2]) return `<div class="row">${cells[0]}<div class="sep"></div><div class="infobox">${info}</div></div>`;
+    if (!side && isInfoRow(r) && r[1]) return `<div class="row">${cells[0]}<div class="sep"></div>${cells[1]}<div class="sep"></div><div class="infobox narrow">${info}</div></div>`;
+    if (!side && isInfoRow(r)) return `<div class="row">${cells[0]}<div class="sep"></div><div class="infobox">${info}</div></div>`;
     return `<div class="row${i === 0 ? ' hero' : ''}">${cells[0]}<div class="sep">${isLadder && r[1] ? arrow : ''}</div>${cells[1]}<div class="sep">${isLadder && r[2] ? arrow : ''}</div>${cells[2]}</div>`;
   };
   const sitem = (p) => `<div class="si"><div class="nm">${esc(p.name)} <span class="pr">$${price(p.price)}</span></div><div class="ds">${esc(p.desc)}${diet(p) ? ` <b class="dt">${diet(p)}</b>` : ''}</div></div>`;
@@ -411,13 +413,17 @@ aside h3.d { margin-top: 5mm }
 .foot .gf { max-width: ${big ? 190 : 150}mm; line-height: 1.3 }
 .infobox { grid-column: 3 / 6; align-self: center; border: .5mm solid ${C.red}; border-radius: 3mm; padding: 4mm 6mm; font-size: ${S.ds - .2}mm; line-height: 1.35;
   display: grid; grid-template-columns: 1fr auto; column-gap: 8mm; align-items: center }
+.infobox.narrow { grid-column: 5 / 6; grid-template-columns: 1fr; row-gap: 1.6mm; padding: 2.6mm 4mm; font-size: ${S.ds - .75}mm; line-height: 1.28 }
+.infobox.narrow h4 { font-size: ${S.nm - 1.6}mm; margin-bottom: .4mm }
+.infobox.narrow .legend { font-size: ${S.ds - .6}mm; line-height: 1.35 }
+.tag { display: inline-block; font-family: 'Lilita One'; font-size: ${S.nt}mm; color: ${C.paper}; background: ${C.blue}; color: ${C.red}; border-radius: 50%; padding: .2mm 3mm .5mm; margin-bottom: 1mm; line-height: 1 }
 .infobox h4 { font-family: 'Lilita One'; font-weight: 400; font-size: ${S.nm - .6}mm; color: ${C.red}; margin-bottom: .8mm }
 .infobox .legend { font-size: ${S.ds}mm; color: ${C.deep}; line-height: 1.5; white-space: nowrap } .infobox .legend b { color: ${C.red} }
 .bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 5mm; background: ${checks(5)} }`;
 
   const intro = `${esc(M.brand.intro)}<b>${esc(M.brand.introAsk)}</b>`;
   const info = `<div><h4>GF bases available</h4>${esc(M.notes.gf.text)}</div><div class="legend"><b>V</b> vegetarian<br><b>Ve</b> vegan<br>Vegan? Just ask.</div>`;
-  const hasInfoRow = !side && rows.some((r) => r[0] && !r[1] && !r[2]);
+  const hasInfoRow = !side && rows.some(isInfoRow);
   const tierNotes = ['the classic flavours', 'a little more', 'everything on it'];
   return head(`il Mercato Centrale — ${title}`, css) + `
 <div class="page">

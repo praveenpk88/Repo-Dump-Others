@@ -29,7 +29,8 @@ module.exports = {
     ],
     [
       { name: 'Vegetarian', price: 27.5, desc: 'Zucchini cream base with seasonal vegetables & EVOO', diet: 'V', photo: 'vegetariana' },
-      null,
+      // Price and photo to confirm with the manager (null prints as a yellow XX).
+      { name: 'Nutella Pizza', price: null, desc: 'Nutella & powdered sugar', diet: 'V', tag: 'Dolce' },
       null,
     ],
   ],

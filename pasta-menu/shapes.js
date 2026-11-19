@@ -59,7 +59,7 @@ const SHAPE_SVG = {
 // Pappardelle options (the first drawing read as "two wavy lines").
 // ---------------------------------------------------------------------------------------------
 // A wide ribbon with crimped (fluted) edges, following a wave. cx/cy centre, len, h height, rot degrees.
-function ribbon({ x0, x1, cy, h, amp, waves, phase = 0, scallop = 1.6, rot = 0, fill = GOLD }) {
+function ribbon({ x0, x1, cy, h, amp, waves, phase = 0, scallop = 1.6, rot = 0, fill = GOLD, seam = true }) {
   const N = 64, top = [], bot = [];
   for (let i = 0; i <= N; i++) {
     const t = i / N, x = x0 + (x1 - x0) * t;
@@ -73,7 +73,7 @@ function ribbon({ x0, x1, cy, h, amp, waves, phase = 0, scallop = 1.6, rot = 0, 
     return `${x.toFixed(1)} ${(cy + amp * Math.sin(t * Math.PI * 2 * waves + phase)).toFixed(1)}`;
   });
   return `<g transform="rotate(${rot} 50 50)"><path d="M${top.join(' L')} L${bot.reverse().join(' L')} Z" fill="${fill}" stroke="${LINE}" stroke-width="2.3" stroke-linejoin="round"/>
-    <path d="M${mid.join(' L')}" fill="none" stroke="${GOLD_DARK}" stroke-width="1.2" stroke-dasharray="3 3" opacity=".7"/></g>`;
+    ${seam ? `<path d="M${mid.join(' L')}" fill="none" stroke="${GOLD_DARK}" stroke-width="1.2" stroke-dasharray="3 3" opacity=".7"/>` : ''}</g>`;
 }
 
 const PAPPARDELLE = {
@@ -100,7 +100,12 @@ const PAPPARDELLE = {
     ribbon({ x0: 10, x1: 88, cy: 52, h: 15, amp: 11, waves: 1, phase: Math.PI, rot: 28, fill: GOLD_DARK }) +
     ribbon({ x0: 12, x1: 90, cy: 48, h: 15, amp: 11, waves: 1, phase: 0, rot: -22 })),
 };
-const PAPPARDELLE_PICK = 'ribbons';
+// E: flat, smooth ribbons (no crimped edge), like wide flat spaghetti, loosely draped. The chosen one.
+PAPPARDELLE.flat = () => svg(
+  ribbon({ x0: 12, x1: 88, cy: 30, h: 12, amp: 6, waves: 1.1, phase: .2, scallop: 0, seam: false }) +
+  ribbon({ x0: 10, x1: 86, cy: 52, h: 12, amp: 6, waves: 1.1, phase: 1.3, scallop: 0, seam: false }) +
+  ribbon({ x0: 14, x1: 90, cy: 74, h: 12, amp: 6, waves: 1.1, phase: 2.4, scallop: 0, seam: false }));
+const PAPPARDELLE_PICK = 'flat';
 SHAPE_SVG.Pappardelle = PAPPARDELLE[PAPPARDELLE_PICK];
 
 module.exports = { SHAPE_SVG, PAPPARDELLE };
