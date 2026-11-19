@@ -108,7 +108,7 @@ aside .sub { text-align: center; font-size: 3.4mm; font-style: italic; opacity: 
 aside h5 { font-size: 3mm; letter-spacing: .08em; text-transform: uppercase; opacity: .85; text-align: center; margin-bottom: 1.4mm }
 aside ul { list-style: none; display: grid; grid-template-columns: auto auto; justify-content: center; gap: 1.8mm 7mm; font-size: 4.3mm }
 aside li::before { content: '× '; font-family: 'Lilita One'; opacity: .75 }
-aside .leg { margin-top: auto; text-align: center; font-size: 3mm; opacity: .88; line-height: 1.35 }
+aside .leg { margin-top: auto; text-align: center; font-size: 3.9mm; font-weight: 600; opacity: 1; line-height: 1.35 }
 aside .leg b { border: .3mm solid ${C.paper}; border-radius: 1mm; padding: 0 .7mm }`;
 
   return `<!doctype html><html><head><meta charset="utf-8"><title>il Mercato Centrale — ${esc(TITLE)}</title>
