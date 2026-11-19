@@ -1,0 +1,120 @@
+<!doctype html><html><head><meta charset="utf-8"><title>il Mercato Centrale — Pasta &amp; Gnocchi (3)</title>
+<link rel="stylesheet" href="../../pizza-menu/fonts/fonts.css">
+<style>
+@page { size: 420mm 297mm; margin: 0 }
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html, body { width: 420mm; height: 297mm; background: #FDFBEF }
+body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 14; color: #3A1E18 }
+.page { width: 420mm; height: 297mm; position: relative; overflow: hidden; background: #FDFBEF; padding: 8mm 12mm 0 }
+img { display: block }
+svg { display: block; width: 100%; height: 100% }
+.ph { width: auto; flex: none; -webkit-mask-image: radial-gradient(ellipse closest-side, #000 90%, transparent 100%) }
+header { display: grid; grid-template-columns: 74mm minmax(0, 1fr) 86mm; align-items: center; height: 36mm; column-gap: 8mm }
+.logo { width: 68mm }
+h1 { font-family: 'Lilita One'; font-weight: 400; color: #C40001; font-size: 23mm; line-height: .9; text-align: center; text-transform: uppercase; transform: scaleX(.86); white-space: nowrap }
+.intro { font-size: 3.6mm; line-height: 1.38; color: #8E1410; border-left: .5mm solid #C40001; padding-left: 4mm }
+.checks { height: 7mm; background: repeating-conic-gradient(#C40001 0 25%, #FDFBEF 0 50%) 0 0 / 7mm 7mm; margin: 1mm 0 4mm }
+.bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 5mm; background: repeating-conic-gradient(#C40001 0 25%, #FDFBEF 0 50%) 0 0 / 5mm 5mm }
+.nm { font-weight: 700; color: #C40001; line-height: 1.1; font-variation-settings: 'opsz' 48, 'SOFT' 50 }
+.pr { white-space: nowrap }
+.ds { line-height: 1.28; color: #3A1E18 }
+.dt { font-weight: 700; color: #C40001; font-size: .9em; white-space: nowrap }
+.nt { font-style: italic; color: #8E1410 }
+.oval { font-family: 'Lilita One'; font-weight: 400; background: #C40001; color: #FDFBEF; border-radius: 50%/60%; line-height: 1; white-space: nowrap }
+.oval small { font-family: 'Fraunces'; font-style: italic; font-size: .5em; opacity: .92; margin-left: 2mm }
+.legend { position: absolute; right: 12mm; bottom: 8mm; font-size: 3.2mm; color: #8E1410 } .legend b { color: #C40001 }
+
+.step { display: flex; align-items: center; gap: 3mm; margin-bottom: 2mm }
+.step b { width: 9mm; height: 9mm; border-radius: 50%; background: #C40001; color: #FDFBEF; display: grid; place-items: center; font-family: 'Lilita One'; font-weight: 400; font-size: 5.6mm }
+.step h3 { font-family: 'Lilita One'; font-weight: 400; color: #C40001; font-size: 7.4mm; line-height: 1 }
+.step span { font-style: italic; color: #8E1410; font-size: 3.6mm; margin-left: 2mm }
+.shapes { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4mm; margin-bottom: 4mm }
+.sh { background: #F7E9D6; border-radius: 3mm; height: 28mm; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1mm }
+.sh .ic { width: 21mm; height: 21mm }
+.sh span { font-weight: 700; color: #C40001; font-size: 4mm; white-space: nowrap }
+.sh.gf { background: #C40001 } .sh.gf span { color: #FDFBEF }
+.rows { display: grid; grid-template-columns: 15mm 1fr; row-gap: 3mm }
+.lab { display: grid; place-items: center; border-radius: 3mm; background: #C40001; margin-right: 3mm }
+.lab span { font-family: 'Lilita One'; color: #FDFBEF; font-size: 7.4mm; writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap }
+.cards { display: grid; grid-template-columns: repeat(8, 1fr); column-gap: 3.5mm; height: 84mm; align-items: start; align-content: center }
+.card { display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0 }
+.card .pw { height: 33mm; display: flex; align-items: center; justify-content: center; margin-bottom: 1.8mm }
+.card .nm { font-size: 4.5mm; line-height: 1.1; min-height: 10mm; display: flex; align-items: center }
+.card .price { font-family: 'Lilita One'; color: #FDFBEF; background: #C40001; border-radius: 4mm; font-size: 4.8mm; padding: .5mm 3.2mm .8mm; margin: .8mm 0 1.4mm; line-height: 1 }
+.card .price .dt { color: #FDFBEF; font-family: 'Fraunces'; margin-left: 1mm; opacity: .9 }
+.card .ds { font-size: 3.35mm; line-height: 1.25 }
+.card .nt { font-size: 3.1mm; margin-top: .6mm }
+.info { grid-column: span 2; align-self: center; height: 64mm; background: #F7E9D6; border-radius: 3mm; padding: 4mm 6mm; display: flex; align-items: center; gap: 6mm }
+.info p { font-size: 3.7mm; line-height: 1.45; color: #8E1410 } .info p b { color: #C40001 }
+.info h4 { font-family: 'Lilita One'; font-weight: 400; color: #C40001; font-size: 6mm; line-height: 1; margin-bottom: 1.5mm }
+.badge { flex: none; width: 38mm; height: 38mm; border-radius: 50%; background: #C40001; color: #FDFBEF; display: grid; place-items: center; text-align: center; transform: rotate(-8deg);
+  box-shadow: 0 0 0 1.2mm #F7E9D6, 0 0 0 1.6mm #C40001 }
+.badge b { display: block; font-family: 'Lilita One'; font-weight: 400; font-size: 13mm; line-height: .9 }
+.badge span { display: block; font-size: 3.1mm; font-weight: 700; line-height: 1.15; padding: 0 3mm }
+</style></head><body><div class="page">
+  <header>
+    <img class="logo" src="../../pizza-menu/brand/il-mercato-logo.png">
+    <h1>Pasta &amp; Gnocchi</h1>
+    <div class="intro">Pasta fresca, cooked to order, and gnocchi made in-house by our pasta chef Daniele.</div>
+  </header>
+  <div class="checks"></div>
+  <div class="step"><b>1</b><h3>Pick your shape</h3><span>Any dish, any shape, except the lasagna</span></div>
+  <div class="shapes"><div class="sh"><div class="ic"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="translate(46 62) rotate(-18)">
+  <path d="M-26 -11 H22 A6 11 0 0 1 22 11 H-26 A6 11 0 0 1 -26 -11 Z" fill="#F0C25E" stroke="#8E1410" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M-27 -6.5 H20" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M-27 -2.2 H20" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M-27 2.2 H20" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M-27 6.5 H20" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="22" cy="0" rx="6" ry="11" fill="#F0C25E" stroke="#8E1410" stroke-width="2.6"/>
+  <ellipse cx="22.4" cy="0" rx="3" ry="6.4" fill="#C98B2B" stroke="#8E1410" stroke-width="1.6"/></g><g transform="translate(54 38) rotate(14)">
+  <path d="M-26 -11 H22 A6 11 0 0 1 22 11 H-26 A6 11 0 0 1 -26 -11 Z" fill="#F0C25E" stroke="#8E1410" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M-27 -6.5 H20" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M-27 -2.2 H20" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M-27 2.2 H20" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M-27 6.5 H20" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="22" cy="0" rx="6" ry="11" fill="#F0C25E" stroke="#8E1410" stroke-width="2.6"/>
+  <ellipse cx="22.4" cy="0" rx="3" ry="6.4" fill="#C98B2B" stroke="#8E1410" stroke-width="1.6"/></g></svg></div><span>Rigatoni</span></div><div class="sh"><div class="ic"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M20 56 C18 30 80 26 82 50 C84 74 26 80 24 58 C22 42 70 38 72 54 C74 66 38 70 38 56 C38 48 58 46 60 54" fill="none" stroke="#8E1410" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 56 C18 30 80 26 82 50 C84 74 26 80 24 58 C22 42 70 38 72 54 C74 66 38 70 38 56 C38 48 58 46 60 54" fill="none" stroke="#F0C25E" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 48 C24 22 74 16 86 40 C92 54 84 70 70 76" fill="none" stroke="#8E1410" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 48 C24 22 74 16 86 40 C92 54 84 70 70 76" fill="none" stroke="#F0C25E" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 70 C40 86 70 86 84 66" fill="none" stroke="#8E1410" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 70 C40 86 70 86 84 66" fill="none" stroke="#F0C25E" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 40 C40 30 64 30 74 42" fill="none" stroke="#8E1410" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 40 C40 30 64 30 74 42" fill="none" stroke="#F0C25E" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Spaghetti</span></div><div class="sh"><div class="ic"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(-30 50 52)"><ellipse cx="50" cy="25" rx="14" ry="5.2" transform="rotate(24 50 25)" fill="#C98B2B" stroke="#8E1410" stroke-width="2.2"/><ellipse cx="50" cy="20" rx="14" ry="5.2" transform="rotate(-24 50 20)" fill="#F0C25E" stroke="#8E1410" stroke-width="2.2"/><ellipse cx="50" cy="35" rx="14" ry="5.2" transform="rotate(24 50 35)" fill="#C98B2B" stroke="#8E1410" stroke-width="2.2"/><ellipse cx="50" cy="30" rx="14" ry="5.2" transform="rotate(-24 50 30)" fill="#F0C25E" stroke="#8E1410" stroke-width="2.2"/><ellipse cx="50" cy="45" rx="14" ry="5.2" transform="rotate(24 50 45)" fill="#C98B2B" stroke="#8E1410" stroke-width="2.2"/><ellipse cx="50" cy="40" rx="14" ry="5.2" transform="rotate(-24 50 40)" fill="#F0C25E" stroke="#8E1410" stroke-width="2.2"/><ellipse cx="50" cy="55" rx="14" ry="5.2" transform="rotate(24 50 55)" fill="#C98B2B" stroke="#8E1410" stroke-width="2.2"/><ellipse cx="50" cy="50" rx="14" ry="5.2" transform="rotate(-24 50 50)" fill="#F0C25E" stroke="#8E1410" stroke-width="2.2"/><ellipse cx="50" cy="65" rx="14" ry="5.2" transform="rotate(24 50 65)" fill="#C98B2B" stroke="#8E1410" stroke-width="2.2"/><ellipse cx="50" cy="60" rx="14" ry="5.2" transform="rotate(-24 50 60)" fill="#F0C25E" stroke="#8E1410" stroke-width="2.2"/><ellipse cx="50" cy="75" rx="14" ry="5.2" transform="rotate(24 50 75)" fill="#C98B2B" stroke="#8E1410" stroke-width="2.2"/><ellipse cx="50" cy="70" rx="14" ry="5.2" transform="rotate(-24 50 70)" fill="#F0C25E" stroke="#8E1410" stroke-width="2.2"/><ellipse cx="50" cy="85" rx="14" ry="5.2" transform="rotate(24 50 85)" fill="#C98B2B" stroke="#8E1410" stroke-width="2.2"/><ellipse cx="50" cy="80" rx="14" ry="5.2" transform="rotate(-24 50 80)" fill="#F0C25E" stroke="#8E1410" stroke-width="2.2"/></g></svg></div><span>Fusilli</span></div><div class="sh"><div class="ic"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M14 40 C30 22 46 56 62 38 C72 27 80 32 88 36" fill="none" stroke="#8E1410" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 40 C30 22 46 56 62 38 C72 27 80 32 88 36" fill="none" stroke="#F0C25E" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 64 C30 48 48 82 66 62 C74 54 82 56 88 60" fill="none" stroke="#8E1410" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 64 C30 48 48 82 66 62 C74 54 82 56 88 60" fill="none" stroke="#F0C25E" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Pappardelle</span></div><div class="sh"><div class="ic"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="translate(32 40) rotate(-12) scale(1)">
+  <path d="M-15 -2 C-15 -11 -6 -13 0 -12 C8 -12 15 -9 15 -1 C15 8 7 11 0 11 C-8 11 -15 7 -15 -2 Z" fill="#F0C25E" stroke="#8E1410" stroke-width="2.6"/>
+  <path d="M-9 -9.5 C-7 -3 -7 3 -9 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M-4.5 -9.5 C-2.5 -3 -2.5 3 -4.5 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M0 -9.5 C2 -3 2 3 0 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M4.5 -9.5 C6.5 -3 6.5 3 4.5 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M9 -9.5 C11 -3 11 3 9 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="-6.5" cy="-1" rx="3.2" ry="2.4" fill="#C98B2B" opacity=".55"/></g><g transform="translate(68 42) rotate(14) scale(1)">
+  <path d="M-15 -2 C-15 -11 -6 -13 0 -12 C8 -12 15 -9 15 -1 C15 8 7 11 0 11 C-8 11 -15 7 -15 -2 Z" fill="#F0C25E" stroke="#8E1410" stroke-width="2.6"/>
+  <path d="M-9 -9.5 C-7 -3 -7 3 -9 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M-4.5 -9.5 C-2.5 -3 -2.5 3 -4.5 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M0 -9.5 C2 -3 2 3 0 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M4.5 -9.5 C6.5 -3 6.5 3 4.5 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M9 -9.5 C11 -3 11 3 9 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="-6.5" cy="-1" rx="3.2" ry="2.4" fill="#C98B2B" opacity=".55"/></g><g transform="translate(50 68) rotate(-4) scale(1)">
+  <path d="M-15 -2 C-15 -11 -6 -13 0 -12 C8 -12 15 -9 15 -1 C15 8 7 11 0 11 C-8 11 -15 7 -15 -2 Z" fill="#F0C25E" stroke="#8E1410" stroke-width="2.6"/>
+  <path d="M-9 -9.5 C-7 -3 -7 3 -9 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M-4.5 -9.5 C-2.5 -3 -2.5 3 -4.5 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M0 -9.5 C2 -3 2 3 0 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M4.5 -9.5 C6.5 -3 6.5 3 4.5 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M9 -9.5 C11 -3 11 3 9 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="-6.5" cy="-1" rx="3.2" ry="2.4" fill="#C98B2B" opacity=".55"/></g></svg></div><span>Gnocchi</span></div><div class="sh gf"><div class="ic"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="translate(34 52) rotate(-12) scale(1)">
+  <path d="M-15 -2 C-15 -11 -6 -13 0 -12 C8 -12 15 -9 15 -1 C15 8 7 11 0 11 C-8 11 -15 7 -15 -2 Z" fill="#F0C25E" stroke="#8E1410" stroke-width="2.6"/>
+  <path d="M-9 -9.5 C-7 -3 -7 3 -9 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M-4.5 -9.5 C-2.5 -3 -2.5 3 -4.5 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M0 -9.5 C2 -3 2 3 0 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M4.5 -9.5 C6.5 -3 6.5 3 4.5 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M9 -9.5 C11 -3 11 3 9 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="-6.5" cy="-1" rx="3.2" ry="2.4" fill="#C98B2B" opacity=".55"/></g><g transform="translate(62 66) rotate(10) scale(1)">
+  <path d="M-15 -2 C-15 -11 -6 -13 0 -12 C8 -12 15 -9 15 -1 C15 8 7 11 0 11 C-8 11 -15 7 -15 -2 Z" fill="#F0C25E" stroke="#8E1410" stroke-width="2.6"/>
+  <path d="M-9 -9.5 C-7 -3 -7 3 -9 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M-4.5 -9.5 C-2.5 -3 -2.5 3 -4.5 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M0 -9.5 C2 -3 2 3 0 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M4.5 -9.5 C6.5 -3 6.5 3 4.5 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/><path d="M9 -9.5 C11 -3 11 3 9 9" fill="none" stroke="#C98B2B" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="-6.5" cy="-1" rx="3.2" ry="2.4" fill="#C98B2B" opacity=".55"/></g><circle cx="72" cy="27" r="17" fill="#C40001"/><circle cx="72" cy="27" r="14" fill="none" stroke="#FDFBEF" stroke-width="1" stroke-dasharray="2 2"/><text x="72" y="33.5" text-anchor="middle" font-family="Lilita One" font-size="17" fill="#FDFBEF">GF</text></svg></div><span>Gluten-free gnocchi</span></div></div>
+  <div class="step"><b>2</b><h3>Pick your dish</h3></div>
+  <div class="rows">
+    <div class="lab"><span>Pasta</span></div><div class="cards"><div class="card"><div class="pw"><img class="ph" src="../photos/rigatoni-vodka.png" style="height:33mm"></div>
+    <div class="nm">Rigatoni alla Vodka</div><div class="price">$17.50 <b class="dt">V</b></div>
+    <div class="ds">Slightly spicy tomato &amp; cream sauce with a splash of vodka</div></div><div class="card"><div class="pw"><img class="ph" src="../photos/spaghetti-pomodoro.png" style="height:33mm"></div>
+    <div class="nm">Spaghetti Pomodoro</div><div class="price">$19.50 <b class="dt">V</b></div>
+    <div class="ds">Rich tomato sauce, stracciatella &amp; fresh basil</div></div><div class="card"><div class="pw"><img class="ph" src="../photos/capsicum.png" style="height:33mm"></div>
+    <div class="nm">Capsicum Pasta</div><div class="price">$20.50 <b class="dt">V</b></div>
+    <div class="ds">Creamy capsicum sauce, ricotta salata &amp; parsley</div></div><div class="card"><div class="pw"><img class="ph" src="../photos/amatriciana.png" style="height:33mm"></div>
+    <div class="nm">Amatriciana</div><div class="price">$24.50</div>
+    <div class="ds">Rigatoni in a tomato &amp; pork sauce with guanciale &amp; pecorino</div></div><div class="card"><div class="pw"><img class="ph" src="../photos/carbonara.png" style="height:33mm"></div>
+    <div class="nm">Carbonara</div><div class="price">$25.50</div>
+    <div class="ds">Rigatoni in egg yolk, parmesan &amp; pecorino with a dash of cream</div></div><div class="card"><div class="pw"><img class="ph" src="../photos/nonna-anna.png" style="height:33mm"></div>
+    <div class="nm">Pasta della Nonna Anna</div><div class="price">$25.50</div>
+    <div class="ds">Baked rigatoni with minced beef, rich tomato sauce, cheese &amp; vegetables</div></div><div class="card"><div class="pw"><img class="ph" src="../photos/pappardelle-bolognese.png" style="height:33mm"></div>
+    <div class="nm">Pappardelle Bolognese</div><div class="price">$26.50</div>
+    <div class="ds">Fresh egg ribbons in a slow-simmered beef ragu</div></div><div class="card"><div class="pw"><img class="ph" src="../photos/lasagna.png" style="height:33mm"></div>
+    <div class="nm">The Classic Lasagna</div><div class="price">$26.50</div>
+    <div class="ds">Beef ragu, creamy bechamel, melted mozzarella &amp; a grilled cheese top</div></div></div>
+    <div class="lab"><span>Gnocchi</span></div><div class="cards"><div class="card"><div class="pw"><img class="ph" src="../photos/gnocchi-classico.png" style="height:33mm"></div>
+    <div class="nm">Gnocchi Classico</div><div class="price">$20.50 <b class="dt">V</b></div>
+    <div class="ds">Rich tomato sauce, stracciatella &amp; fresh basil</div></div><div class="card"><div class="pw"><img class="ph" src="../photos/gnocchi-pesto.png" style="height:33mm"></div>
+    <div class="nm">Gnocchi al Pesto</div><div class="price">$22.50 <b class="dt">V</b></div>
+    <div class="ds">Basil pesto, semi-dried cherry tomatoes &amp; stracciatella</div></div><div class="card"><div class="pw"><img class="ph" src="../photos/gnocchi-sorrentina.png" style="height:28mm; -webkit-mask-image:none"></div>
+    <div class="nm">Gnocchi Sorrentina</div><div class="price">$23.50 <b class="dt">V</b></div>
+    <div class="ds">Baked with Napoli sauce &amp; mozzarella</div><div class="nt">In a focaccia bowl +$2.50</div></div><div class="card"><div class="pw"><img class="ph" src="../photos/gnocchi-amatriciana.png" style="height:33mm"></div>
+    <div class="nm">Gnocchi Amatriciana</div><div class="price">$25.50</div>
+    <div class="ds">Tomato &amp; pork sauce with guanciale &amp; pecorino</div></div><div class="card"><div class="pw"><img class="ph" src="../photos/gnocchi-carbonara.png" style="height:33mm"></div>
+    <div class="nm">Gnocchi Carbonara</div><div class="price">$26.50</div>
+    <div class="ds">Egg yolk, parmesan &amp; pecorino with a dash of cream</div></div><div class="card"><div class="pw"><img class="ph" src="../photos/gnocchi-bolognese.png" style="height:33mm"></div>
+    <div class="nm">Gnocchi Bolognese</div><div class="price">$27.50</div>
+    <div class="ds">Slow-simmered beef ragu</div></div>
+      <div class="info"><div class="badge"><div><b>$10</b><span>Rigatoni alla Vodka every Monday</span></div></div>
+        <div><h4>Mondays!</h4><p>Our Rigatoni alla Vodka is <b>$10</b> all day.<br><b>V</b> vegetarian</p></div></div></div>
+  </div><div class="bottom"></div></div></body></html>
