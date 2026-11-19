@@ -55,4 +55,52 @@ const SHAPE_SVG = {
     `<text x="72" y="33.5" text-anchor="middle" font-family="Lilita One" font-size="17" fill="${CREAM}">GF</text>`),
 };
 
-module.exports = { SHAPE_SVG };
+// ---------------------------------------------------------------------------------------------
+// Pappardelle options (the first drawing read as "two wavy lines").
+// ---------------------------------------------------------------------------------------------
+// A wide ribbon with crimped (fluted) edges, following a wave. cx/cy centre, len, h height, rot degrees.
+function ribbon({ x0, x1, cy, h, amp, waves, phase = 0, scallop = 1.6, rot = 0, fill = GOLD }) {
+  const N = 64, top = [], bot = [];
+  for (let i = 0; i <= N; i++) {
+    const t = i / N, x = x0 + (x1 - x0) * t;
+    const y = cy + amp * Math.sin(t * Math.PI * 2 * waves + phase);
+    const s = scallop * Math.abs(Math.sin(t * Math.PI * 14));
+    top.push(`${x.toFixed(1)} ${(y - h / 2 - s).toFixed(1)}`);
+    bot.push(`${x.toFixed(1)} ${(y + h / 2 + s).toFixed(1)}`);
+  }
+  const mid = Array.from({ length: N + 1 }, (_, i) => {
+    const t = i / N, x = x0 + (x1 - x0) * t;
+    return `${x.toFixed(1)} ${(cy + amp * Math.sin(t * Math.PI * 2 * waves + phase)).toFixed(1)}`;
+  });
+  return `<g transform="rotate(${rot} 50 50)"><path d="M${top.join(' L')} L${bot.reverse().join(' L')} Z" fill="${fill}" stroke="${LINE}" stroke-width="2.3" stroke-linejoin="round"/>
+    <path d="M${mid.join(' L')}" fill="none" stroke="${GOLD_DARK}" stroke-width="1.2" stroke-dasharray="3 3" opacity=".7"/></g>`;
+}
+
+const PAPPARDELLE = {
+  // A: a coiled nest of wide ribbon, the way fresh pappardelle is portioned
+  nest: () => {
+    const R = [5, 10, 15, 20, 25, 30], k = .72;
+    let d = 'M50 54', x = 50;
+    R.forEach((r, i) => { const nx = i % 2 === 0 ? x + 2 * r - (i ? 0 : 0) : x - 2 * r; d += ` A${r} ${r * k} 0 0 1 ${nx} 54`; x = nx; });
+    d = 'M50 54'; x = 50;
+    // half-arcs with alternating centres (50 and 55) give an even spiral
+    [[60, 5], [40, 10], [70, 15], [30, 20], [80, 25]].forEach(([nx, r]) => { d += ` A${r} ${r * k} 0 0 1 ${nx} 54`; });
+    d += ' C80 74 70 86 62 88';
+    return svg(strand(d, 6.6) + `<path d="${d}" fill="none" stroke="${GOLD_DARK}" stroke-width="1" stroke-dasharray="2.5 2.5" opacity=".6"/>`);
+  },
+  // B: three crimped ribbons, loosely stacked
+  ribbons: () => svg(
+    ribbon({ x0: 12, x1: 88, cy: 28, h: 11, amp: 5, waves: 1.2, phase: 0 }) +
+    ribbon({ x0: 10, x1: 86, cy: 50, h: 11, amp: 5, waves: 1.2, phase: 1 }) +
+    ribbon({ x0: 14, x1: 90, cy: 72, h: 11, amp: 5, waves: 1.2, phase: 2 })),
+  // C: one big fluted ribbon, folded in a wave
+  ribbon: () => svg(ribbon({ x0: 10, x1: 90, cy: 50, h: 22, amp: 13, waves: 1, phase: .3, scallop: 2.2, rot: -14 })),
+  // D: two crossing ribbons, the back one in shadow
+  crossed: () => svg(
+    ribbon({ x0: 10, x1: 88, cy: 52, h: 15, amp: 11, waves: 1, phase: Math.PI, rot: 28, fill: GOLD_DARK }) +
+    ribbon({ x0: 12, x1: 90, cy: 48, h: 15, amp: 11, waves: 1, phase: 0, rot: -22 })),
+};
+const PAPPARDELLE_PICK = 'ribbons';
+SHAPE_SVG.Pappardelle = PAPPARDELLE[PAPPARDELLE_PICK];
+
+module.exports = { SHAPE_SVG, PAPPARDELLE };

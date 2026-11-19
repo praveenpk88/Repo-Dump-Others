@@ -45,3 +45,10 @@ Typos fixed from Canva: Papardelle → Pappardelle, vegetabels → vegetables, r
 1 · Refined (full-width red panel along the bottom) · 2 · Sidebar (red sidebar with shapes and Create your own) ·
 3 · Poster (red header with the blue oval, cream card columns, round price badge).
 Matching pizza treatments: `../pizza-menu/columns.js` (1) and `../pizza-menu/columns3.js` (2 and 3).
+
+### Chosen: Sidebar (round 3 · 2), reworked in `sidebar.js`
+
+`node sidebar.js` → `output/sidebar-a.*` (standard header) and `output/sidebar-b.*` (poster header). Changes from round 3 · 2:
+prices in a red pill under each name (one place to look, names no longer wrap), V as a small tag, $10 Monday special in the
+empty Al forno gnocchi cell, Create your own as 1 base · 2 shape · 3 extras, allergy line in the sidebar.
+Pappardelle icon redrawn as crimped ribbons; other options in `shapes.js` (`PAPPARDELLE`), compared in `output/pappardelle-options.png`.

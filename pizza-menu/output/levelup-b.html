@@ -1,0 +1,123 @@
+<!doctype html><html><head><meta charset="utf-8"><title>il Mercato Centrale — Pizza Napoletana</title>
+<link rel="stylesheet" href="../fonts/fonts.css"><style>
+@page { size: 420mm 297mm; margin: 0 }
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html, body { width: 420mm; height: 297mm; background: #FDFBEF }
+body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 14; color: #3A1E18 }
+.page { width: 420mm; height: 297mm; position: relative; overflow: hidden; background: #FDFBEF; padding: 0 12mm }
+img { display: block } svg { display: block; width: 100%; height: 100% }
+header { display: grid; grid-template-columns: 70mm minmax(0, 1fr) 88mm; align-items: center; height: 30mm; column-gap: 8mm }
+header .logo { width: 62mm }
+header h1 { font-family: 'Lilita One'; font-weight: 400; color: #C40001; font-size: 21mm; line-height: .9; text-align: center; text-transform: uppercase; transform: scaleX(.86); white-space: nowrap }
+header .intro { font-size: 2.75mm; line-height: 1.32; color: #8E1410; border-left: .5mm solid #C40001; padding-left: 4mm } header .intro b { display: block; margin-top: .8mm; color: #C40001 }
+.checks { height: 7mm; background: repeating-conic-gradient(#C40001 0 25%, #FDFBEF 0 50%) 0 0 / 7mm 7mm; margin: 1mm 0 3.5mm }
+.checks.full { margin: 0 -12mm 4mm }
+.hero { margin: 0 -12mm; height: 42mm; background: #C40001; position: relative; display: grid; grid-template-columns: 80mm 1fr 84mm; align-items: center; padding: 0 12mm; column-gap: 6mm }
+.hero .badge { background: #FDFBEF; border-radius: 5mm; padding: 2.6mm 4.6mm; width: 66mm; box-shadow: 0 1mm 2.4mm rgba(0,0,0,.2) } .hero .badge img { width: 100% }
+.hero .ttl { position: relative; display: grid; place-items: center; height: 100% }
+.hero .blob { position: absolute; width: 86%; height: 64%; background: #B9CBD6; border-radius: 50% }
+.hero h1 { position: relative; font-family: 'Lilita One'; font-weight: 400; color: #FDFBEF; font-size: 19mm; line-height: .9; text-transform: uppercase; transform: scaleX(.86); white-space: nowrap;
+  text-shadow: .5mm .5mm 0 #8E1410, 1mm 1mm 0 #8E1410, 1.5mm 1.5mm 0 #8E1410 }
+.hero .side { color: #FDFBEF; font-size: 2.9mm; line-height: 1.34 } .hero .side b { display: block; margin-top: .8mm } .hero .xs { font-family: 'Lilita One'; font-size: 5mm; letter-spacing: 1.5mm; margin-bottom: 1.4mm; opacity: .9 }
+.hero .dots { position: absolute; left: 2mm; top: 4mm; width: 8mm; height: 34mm; background: radial-gradient(circle, rgba(253,251,239,.6) .6mm, transparent .7mm) 0 0 / 4mm 4mm }
+.body { display: grid; grid-template-columns: 1fr 96mm; column-gap: 6mm }
+main { display: flex; flex-direction: column; height: 233mm }
+.heads, .lists { display: grid; grid-template-columns: 1fr 5mm 1fr 5mm 1fr }
+.oval { justify-self: start; font-family: 'Lilita One'; font-weight: 400; background: #C40001; color: #FDFBEF; border-radius: 50%/60%; line-height: 1; white-space: nowrap;
+  font-size: 6.6mm; padding: 1.5mm 6.5mm 1.9mm; margin-bottom: 7mm }
+.oval small { font-family: 'Fraunces'; font-style: italic; font-size: .5em; opacity: .92; margin-left: 2mm }
+.ladder { position: relative; background: #F7E9D6; border-radius: 4mm; padding: 7mm 5mm 4.5mm; display: grid; grid-template-columns: 1fr 9mm 1fr 9mm 1fr; align-items: center; column-gap: 0 }
+.ladder .tag { position: absolute; top: -4mm; left: 50%; transform: translateX(-50%); background: #B9CBD6; color: #C40001; font-family: 'Lilita One'; font-size: 5.2mm;
+  padding: 1.1mm 7mm 1.5mm; border-radius: 50%; white-space: nowrap; line-height: 1 }
+.ladder .st { display: flex; align-items: center; gap: 3.5mm; min-width: 0 }
+.ladder .st img { width: 37mm; height: 37mm; border-radius: 50%; object-fit: cover; flex: none; box-shadow: 0 .8mm 2mm rgba(80,30,10,.3) }
+.ladder .st .nm { font-size: 5.4mm } .ladder .st .ds { font-size: 3.25mm }
+.ladder i { width: 8mm; height: 8mm; border-radius: 50%; background: #C40001; padding: 1.3mm; justify-self: center }
+.lists { flex: 1; margin-top: 6mm }
+.col { display: flex; flex-direction: column; justify-content: space-around }
+.vline { width: .35mm; background: #EAD8C0; justify-self: center; margin: 2mm 0 }
+.it { display: flex; align-items: center; gap: 3.2mm; min-width: 0 }
+.ph { border-radius: 50%; object-fit: cover; flex: none; box-shadow: 0 .7mm 1.6mm rgba(80,30,10,.28) }
+.tx { min-width: 0 }
+.nm { font-weight: 700; color: #C40001; font-size: 4.6mm; line-height: 1.1; font-variation-settings: 'opsz' 48, 'SOFT' 50 }
+.pr { display: inline-block; margin-top: .9mm; font-family: 'Lilita One'; font-weight: 400; color: #FDFBEF; background: #C40001; border-radius: 3mm; font-size: 4.1mm; padding: .3mm 2.3mm .6mm; line-height: 1 }
+.dt { font-weight: 700; color: #C40001; font-size: .7em; white-space: nowrap; border: .3mm solid #C40001; border-radius: 1mm; padding: 0 .7mm; vertical-align: .2em; margin-left: .4mm }
+.ds { font-size: 3.2mm; line-height: 1.28; margin-top: .8mm }
+.nt { font-size: 3mm; margin-top: .5mm; font-style: italic; color: #8E1410 }
+aside { background: #C40001; color: #FDFBEF; border-radius: 4mm; height: 233mm; padding: 6mm 6mm 5mm; display: flex; flex-direction: column; align-items: center; text-align: center }
+aside h3 { font-family: 'Lilita One'; font-weight: 400; font-size: 8mm; line-height: 1 }
+aside .sub { font-size: 3.4mm; font-style: italic; opacity: .9; margin: 1.2mm 0 4.5mm }
+.bases { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; width: 100% }
+.bases > div { display: flex; flex-direction: column; align-items: center; gap: 1.6mm }
+.bases .ic { width: 33mm; height: 33mm; border-radius: 50%; background: #FDFBEF; padding: 3mm }
+.bases .gf .ic { box-shadow: 0 0 0 .8mm #C40001, 0 0 0 1.5mm #FDFBEF }
+.bases b { font-family: 'Lilita One'; font-weight: 400; font-size: 5.2mm; line-height: 1 } .bases small { font-size: 3.1mm; opacity: .9 }
+.gfnote { font-size: 3mm; line-height: 1.32; opacity: .88; margin-top: 4mm }
+.div { height: 5mm; width: 100%; margin: 6mm 0 5mm; background: radial-gradient(circle, rgba(253,251,239,.55) .5mm, transparent .6mm) 0 50% / 4mm 4mm repeat-x }
+.stamp { width: 44mm; height: 44mm; border-radius: 50%; background: #FDFBEF; color: #C40001; display: grid; place-items: center; transform: rotate(-8deg); margin: 1mm 0 5mm;
+  box-shadow: 0 0 0 1.3mm #C40001, 0 0 0 1.8mm #FDFBEF }
+.stamp span { font-family: 'Lilita One'; font-size: 5.6mm; line-height: 1.05; padding: 0 3mm }
+aside h4 { font-family: 'Lilita One'; font-weight: 400; font-size: 6.4mm; line-height: 1; margin-bottom: 1.2mm }
+aside p { font-size: 3.5mm; line-height: 1.35 }
+aside .vg { margin: auto 0; display: flex; flex-direction: column; align-items: center }
+aside .leg { font-size: 3.1mm; opacity: .9; line-height: 1.4 }
+aside .leg b { border: .3mm solid #FDFBEF; border-radius: 1mm; padding: 0 .7mm }</style></head><body><div class="page">
+  <div class="hero"><div class="badge"><img src="../brand/il-mercato-logo.png"></div>
+    <div class="ttl"><div class="blob"></div><h1>Pizza Napoletana</h1></div>
+    <div class="side"><div class="xs">× × × ×</div>At the heart of every pizza is Samuele’s passion: the dough. Combining elements of traditional Napoletana and contemporanea pizza-making, he continually experiments with flour, fermentation and hydration to create his perfect dough.<b>Curious? Ask Samuele what flour and hydration he’s using today.</b></div><div class="dots"></div></div>
+  <div class="checks full"></div>
+  <div class="body"><main>
+      <div class="heads"><div class="oval">Classic<small>the classic flavours</small></div><div></div><div class="oval">Level up<small>a little more on top</small></div><div></div><div class="oval">Go all in<small>the most loaded</small></div></div>
+      <div class="ladder"><div class="tag">Same pizza, level it up</div><div class="st"><img src="../photos/margherita.jpg"><div>
+      <div class="nm">Margherita <b class="dt">V</b></div><b class="pr">$22.50</b><div class="ds">San Marzano tomato, Napoli-cut fior di latte, fresh basil &amp; EVOO</div></div></div><i><svg viewBox="0 0 24 24"><path d="M5 12h12M12 6l6 6-6 6" fill="none" stroke="#FDFBEF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></i><div class="st"><img src="../photos/bufalina.jpg"><div>
+      <div class="nm">Bufalina <b class="dt">V</b></div><b class="pr">$28.50</b><div class="ds">+ buffalo mozzarella</div></div></div><i><svg viewBox="0 0 24 24"><path d="M5 12h12M12 6l6 6-6 6" fill="none" stroke="#FDFBEF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></i><div class="st"><img src="../photos/prosciutto.jpg"><div>
+      <div class="nm">Prosciutto</div><b class="pr">$30.50</b><div class="ds">+ prosciutto, on top of the Bufalina</div></div></div></div>
+      <div class="lists"><div class="col"><div class="it"><img class="ph" src="../photos/marinara.jpg" style="width:25mm; height:25mm"><div class="tx">
+    <div class="nm">Marinara <b class="dt">V</b> <b class="dt">Ve</b></div><b class="pr">$17.50</b>
+    <div class="ds">San Marzano tomato, oregano &amp; garlic oil</div></div></div><div class="it"><img class="ph" src="../photos/cheesy-garlic.jpg" style="width:25mm; height:25mm"><div class="tx">
+    <div class="nm">Cheesy Garlic <b class="dt">V</b></div><b class="pr">$16.50</b>
+    <div class="ds">Mozzarella, herbs &amp; garlic oil</div></div></div><div class="it"><img class="ph" src="../photos/napoletana.jpg" style="width:25mm; height:25mm"><div class="tx">
+    <div class="nm">Napoletana</div><b class="pr">$26.50</b>
+    <div class="ds">Mozzarella, olives, anchovies, herbs &amp; garlic oil</div></div></div><div class="it"><img class="ph" src="../photos/vegetariana.jpg" style="width:25mm; height:25mm"><div class="tx">
+    <div class="nm">Vegetarian <b class="dt">V</b></div><b class="pr">$27.50</b>
+    <div class="ds">Zucchini cream base with seasonal vegetables &amp; EVOO</div></div></div></div><div class="vline"></div><div class="col"><div class="it"><img class="ph" src="../photos/hamsorry.jpg" style="width:29mm; height:29mm"><div class="tx">
+    <div class="nm">Hawaiian</div><b class="pr">$26.50</b>
+    <div class="ds">San Marzano tomato, mozzarella, smoked ham, pineapple &amp; EVOO</div></div></div><div class="it"><img class="ph" src="../photos/diavola.jpg" style="width:29mm; height:29mm"><div class="tx">
+    <div class="nm">Diavola</div><b class="pr">$28.50</b>
+    <div class="ds">San Marzano tomato, mozzarella, spicy salame, olives, basil &amp; EVOO</div></div></div><div class="it"><img class="ph" src="../photos/salsiccia-patate.jpg" style="width:29mm; height:29mm"><div class="tx">
+    <div class="nm">Salsiccia &amp; Patate</div><b class="pr">$28.50</b>
+    <div class="ds">Mozzarella cream base, Napoli-cut fior di latte, herb-roasted potato &amp; pork sausage</div><div class="nt">Add mushrooms or capsicum +$1</div></div></div></div><div class="vline"></div><div class="col"><div class="it"><img class="ph" src="../photos/capricciosa.jpg" style="width:29mm; height:29mm"><div class="tx">
+    <div class="nm">Capricciosa</div><b class="pr">$30.50</b>
+    <div class="ds">San Marzano tomato, mozzarella, ham, artichoke, olives, mushroom &amp; EVOO</div></div></div><div class="it"><img class="ph" src="../photos/porcona-rossa.jpg" style="width:29mm; height:29mm"><div class="tx">
+    <div class="nm">La Porcona</div><b class="pr">$30.50</b>
+    <div class="ds">Mozzarella, pork sausage, ham &amp; spicy salame</div><div class="nt">Rossa (tomato base) or Bianca (white base)</div></div></div><div class="it"><img class="ph" src="../photos/gamberi.jpg" style="width:29mm; height:29mm"><div class="tx">
+    <div class="nm">Gamberi</div><b class="pr">$30.50</b>
+    <div class="ds">Zucchini cream base, cherry tomatoes, prawns, spicy ’nduja &amp; stracciatella</div></div></div></div></div>
+    </main>
+    <aside>
+      <h3>Pick your base</h3><div class="sub">Every pizza, either base</div>
+      <div class="bases"><div><div class="ic"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="52" r="38" fill="#F0C25E" stroke="#8E1410" stroke-width="2.6"/>
+  <ellipse cx="22" cy="40" rx="3.4" ry="2.2" fill="#C98B2B" opacity=".6"/><ellipse cx="30" cy="78" rx="3.4" ry="2.2" fill="#C98B2B" opacity=".6"/><ellipse cx="74" cy="80" rx="3.4" ry="2.2" fill="#C98B2B" opacity=".6"/><ellipse cx="82" cy="48" rx="3.4" ry="2.2" fill="#C98B2B" opacity=".6"/><ellipse cx="60" cy="18" rx="3.4" ry="2.2" fill="#C98B2B" opacity=".6"/>
+  <circle cx="50" cy="52" r="29" fill="#D9381E" stroke="#8E1410" stroke-width="1.8"/>
+  <path d="M31 42 C31 35 45 34 45 42 C45 48.3 31 49 31 42 Z" fill="#FFF7E2" stroke="#8E1410" stroke-width="1.2"/><path d="M54 40 C54 34 66 33 66 40 C66 45.4 54 46 54 40 Z" fill="#FFF7E2" stroke="#8E1410" stroke-width="1.2"/><path d="M42.5 60 C42.5 52.5 57.5 51.5 57.5 60 C57.5 66.75 42.5 67.5 42.5 60 Z" fill="#FFF7E2" stroke="#8E1410" stroke-width="1.2"/><path d="M28.5 62 C28.5 56.5 39.5 55.5 39.5 62 C39.5 66.95 28.5 67.5 28.5 62 Z" fill="#FFF7E2" stroke="#8E1410" stroke-width="1.2"/><path d="M60.5 62 C60.5 56.5 71.5 55.5 71.5 62 C71.5 66.95 60.5 67.5 60.5 62 Z" fill="#FFF7E2" stroke="#8E1410" stroke-width="1.2"/>
+  <path d="M0 -6 C4 -3 4 3 0 6 C-4 3 -4 -3 0 -6 Z" transform="translate(47 46) rotate(-30)" fill="#3E8B3A" stroke="#20501E" stroke-width=".9"/><path d="M0 -6 C4 -3 4 3 0 6 C-4 3 -4 -3 0 -6 Z" transform="translate(58 54) rotate(40)" fill="#3E8B3A" stroke="#20501E" stroke-width=".9"/><path d="M0 -6 C4 -3 4 3 0 6 C-4 3 -4 -3 0 -6 Z" transform="translate(42 56) rotate(110)" fill="#3E8B3A" stroke="#20501E" stroke-width=".9"/>
+  
+</svg></div><b>Samuele’s dough</b><small>Our classic base</small></div>
+        <div class="gf"><div class="ic"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="52" r="38" fill="#F0C25E" stroke="#8E1410" stroke-width="2.6"/>
+  <ellipse cx="22" cy="40" rx="3.4" ry="2.2" fill="#C98B2B" opacity=".6"/><ellipse cx="30" cy="78" rx="3.4" ry="2.2" fill="#C98B2B" opacity=".6"/><ellipse cx="74" cy="80" rx="3.4" ry="2.2" fill="#C98B2B" opacity=".6"/><ellipse cx="82" cy="48" rx="3.4" ry="2.2" fill="#C98B2B" opacity=".6"/><ellipse cx="60" cy="18" rx="3.4" ry="2.2" fill="#C98B2B" opacity=".6"/>
+  <circle cx="50" cy="52" r="29" fill="#D9381E" stroke="#8E1410" stroke-width="1.8"/>
+  <path d="M31 42 C31 35 45 34 45 42 C45 48.3 31 49 31 42 Z" fill="#FFF7E2" stroke="#8E1410" stroke-width="1.2"/><path d="M54 40 C54 34 66 33 66 40 C66 45.4 54 46 54 40 Z" fill="#FFF7E2" stroke="#8E1410" stroke-width="1.2"/><path d="M42.5 60 C42.5 52.5 57.5 51.5 57.5 60 C57.5 66.75 42.5 67.5 42.5 60 Z" fill="#FFF7E2" stroke="#8E1410" stroke-width="1.2"/><path d="M28.5 62 C28.5 56.5 39.5 55.5 39.5 62 C39.5 66.95 28.5 67.5 28.5 62 Z" fill="#FFF7E2" stroke="#8E1410" stroke-width="1.2"/><path d="M60.5 62 C60.5 56.5 71.5 55.5 71.5 62 C71.5 66.95 60.5 67.5 60.5 62 Z" fill="#FFF7E2" stroke="#8E1410" stroke-width="1.2"/>
+  <path d="M0 -6 C4 -3 4 3 0 6 C-4 3 -4 -3 0 -6 Z" transform="translate(47 46) rotate(-30)" fill="#3E8B3A" stroke="#20501E" stroke-width=".9"/><path d="M0 -6 C4 -3 4 3 0 6 C-4 3 -4 -3 0 -6 Z" transform="translate(58 54) rotate(40)" fill="#3E8B3A" stroke="#20501E" stroke-width=".9"/><path d="M0 -6 C4 -3 4 3 0 6 C-4 3 -4 -3 0 -6 Z" transform="translate(42 56) rotate(110)" fill="#3E8B3A" stroke="#20501E" stroke-width=".9"/>
+  <circle cx="80" cy="20" r="16" fill="#C40001" stroke="#FDFBEF" stroke-width="2"/>
+    <text x="80" y="26" text-anchor="middle" font-family="Lilita One" font-size="16" fill="#FDFBEF">GF</text>
+</svg></div><b>Gluten-free</b><small>Made in-house by Samuele</small></div></div>
+      <div class="gfnote">Samuele holds a Coeliac Australia certificate. GF pizzas are cooked in the same oven as our regular bases, so we can’t guarantee no gluten or cross-contact.</div>
+      <div class="div"></div>
+      <div class="vg"><div class="stamp"><span>Real dough.<br>Real passion.<br>Real pizza.</span></div>
+      <h4>Vegan? Just ask</h4><p>Ask our team and we’ll make it happen.</p></div>
+      <div class="leg"><b>V</b> vegetarian · <b>Ve</b> vegan<br>Allergies? Please ask our team before ordering.</div>
+    </aside></div>
+  <div style="position:absolute; left:0; right:0; bottom:0; height:5mm; background:repeating-conic-gradient(#C40001 0 25%, #FDFBEF 0 50%) 0 0 / 5mm 5mm"></div>
+</div></body></html>

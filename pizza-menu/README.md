@@ -37,3 +37,8 @@ Napoletana sits in Bianca because its description lists no tomato; its photo sho
 **Columns version** (`node columns.js` → `output/variant-columns.*`), matching Pasta & Gnocchi version 1 (the chosen direction):
 "Pick your base" band (Samuele's dough or gluten-free), then Veggie · With meat · From the sea columns, a "Level up your
 Margherita" feature (Margherita → Bufalina → Prosciutto) and the vegan / V · Ve box. Uses `menu-final.js`.
+
+**Level-up version, paired with the pasta Sidebar menu** (`node levelup.js` → `output/levelup-a.*`, `output/levelup-b.*` with the poster header).
+The manager's Classic → Level up → Go all in direction. Margherita → Bufalina → Prosciutto is the hero band; the other pizzas are
+plain lists under each tier (they are separate pizzas, not upgrades). Red sidebar: Pick your base, vegan note, V / Ve, allergy line.
+The previous one-page version of this direction is `variant-mercato-final`.
