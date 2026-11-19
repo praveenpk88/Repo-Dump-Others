@@ -15,7 +15,7 @@ const checks = (h) => `repeating-conic-gradient(${C.red} 0 25%, ${C.paper} 0 50%
 const round = (name, d) => `<div class="rnd" style="width:${d}mm; height:${d}mm"><img src="../photos/${name}.png"></div>`;
 
 function render(poster) {
-  const item = (p, h, bw) => `<div class="it"><div class="pb" style="width:${bw.toFixed(1)}mm">${photo(p.photo, h)}</div><div class="tx">
+  const item = (p, h, bw) => `<div class="it"><div class="pb" style="width:${bw.toFixed(1)}mm">${photo(p.photo, p.photo === 'gnocchi-sorrentina' ? h * 1.2 : h)}</div><div class="tx">
     <div class="nm">${esc(p.name)}${p.v ? ' <b class="dt">V</b>' : ''}</div><b class="pr">$${money(p.price)}</b>
     <div class="ds">${esc(p.desc)}</div>${p.note && !/Monday/.test(p.note) ? `<div class="nt">${esc(p.note)}</div>` : ''}</div></div>`;
   const monday = `<div class="monday"><div class="mb"><b>$10</b><span>Mondays</span></div><div><h5>Monday special</h5><p>Rigatoni alla Vodka, <b>$10</b> all day</p></div></div>`;

@@ -56,7 +56,7 @@ const MENUS = {
         desc: 'House-made gnocchi tossed in a rich, slow-simmered beef ragu.' },
       { name: 'Gnocchi al Pesto', price: 22.5, photo: ['gnocchi-pesto', 48, 1420], at: [410, 1487], v: true,
         desc: 'Homemade potato gnocchi with basil pesto, semi-dried cherry tomatoes and stracciatella.' },
-      { name: 'Gnocchi Sorrentina', price: 23.5, photo: ['gnocchi-sorrentina', 228, 1690], at: [668, 1725], v: true,
+      { name: 'Gnocchi Sorrentina', price: 23.5, photo: ['gnocchi-sorrentina', 222, 1686], at: [668, 1725], v: true,
         extra: '+ $2.50 Focaccia Bowl', desc: 'Homemade potato gnocchi baked with Napoli sauce and mozzarella cheese.' },
     ],
   },
