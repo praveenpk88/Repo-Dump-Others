@@ -33,3 +33,7 @@ Everything is sized in mm, so the PDFs scale cleanly to A2/A1.
 1 Pick your base (Samuele's dough or gluten-free), 2 Pick your pizza in Rossa (tomato base) and Bianca (white base) rows,
 with Margherita → Bufalina → Prosciutto highlighted as "Same pizza, level it up". Uses `menu-final.js` (13 pizzas, prices +50c).
 Napoletana sits in Bianca because its description lists no tomato; its photo shows tomato, so check with the manager.
+
+**Columns version** (`node columns.js` → `output/variant-columns.*`), matching Pasta & Gnocchi version 1 (the chosen direction):
+"Pick your base" band (Samuele's dough or gluten-free), then Veggie · With meat · From the sea columns, a "Level up your
+Margherita" feature (Margherita → Bufalina → Prosciutto) and the vegan / V · Ve box. Uses `menu-final.js`.

@@ -131,7 +131,19 @@ function columnsVersion(scheme, label, headExtra = '') {
     <div class="nm">${esc(p.name)} <span class="pr">$${money(p.price)}</span></div>
     <div class="ds">${esc(p.desc)}${diet(p)}</div>${p.note ? `<div class="nt">${esc(p.note)}</div>` : ''}</div></div>`;
   const css = shapeBandCss + `
-.grid { display: grid; grid-template-columns: 15mm 1fr 6mm 1fr 6mm 1fr; grid-template-rows: auto 88mm 88mm }
+.grid { display: grid; grid-template-columns: 15mm 1fr 6mm 1fr 6mm 1fr; grid-template-rows: auto 81mm 81mm }
+.strip { position: absolute; left: 12mm; right: 12mm; bottom: 9mm; height: 15mm; background: ${C.red}; color: ${C.paper}; border-radius: 3mm;
+  display: flex; align-items: center; gap: 5mm; padding: 0 6mm 0 27mm }
+.strip .phw { position: absolute; left: 3mm; top: 50%; transform: translateY(-50%); width: 21mm; height: 21mm; border-radius: 50%; background: ${C.paper};
+  display: grid; place-items: center; overflow: hidden; box-shadow: 0 0 0 .9mm ${C.red} }
+.strip .phw .ph { height: 21mm; -webkit-mask-image: radial-gradient(ellipse closest-side, #000 86%, transparent 97%) }
+.strip h4 { font-family: 'Lilita One'; font-weight: 400; font-size: 6.4mm; line-height: 1; white-space: nowrap }
+.strip .price { background: ${C.paper}; color: ${C.red}; font-family: 'Lilita One'; font-size: 5mm; padding: .5mm 3mm .9mm; border-radius: 4mm; line-height: 1; white-space: nowrap }
+.strip .base { font-style: italic; font-size: 3.6mm; white-space: nowrap }
+.strip .adds { display: flex; gap: 3.5mm; font-size: 3.6mm; white-space: nowrap; margin-left: auto; align-items: center }
+.strip .adds b { font-size: 3mm; letter-spacing: .06em; text-transform: uppercase; opacity: .85 }
+.strip .adds span::before { content: '× '; font-family: 'Lilita One'; opacity: .8 }
+.strip .leg { font-size: 3.1mm; opacity: .85; border-left: .3mm solid rgba(253,251,239,.5); padding-left: 4mm; white-space: nowrap }
 .col { justify-self: start; align-self: end; font-size: 7mm; padding: 1.6mm 7mm 2mm; margin: 0 0 2mm 2mm; display: flex; align-items: center; gap: 2.2mm }
 .col i { width: 4.6mm; height: 4.6mm; border-radius: 50%; border: .6mm solid ${C.paper}; flex: none }
 .lab { display: grid; place-items: center; border-radius: 3mm; background: ${C.red}; margin: 2mm 3mm 2mm 0 }
@@ -157,7 +169,10 @@ ${headExtra}`;
     <div></div>${scheme.map((c) => `<div class="oval col">${c.swatch ? `<i style="background:${c.swatch}"></i>` : ''}${c.name}<small>${c.note}</small></div>`).join('<div></div>')}
     ${rows}
   </div>
-  <div class="legend"><b>V</b> vegetarian</div>` + foot;
+  <div class="strip"><div class="phw">${photo(CREATE.photo, 21)}</div><h4>${esc(CREATE.name)}</h4><div class="price">$${money(CREATE.price)}</div>
+    <div class="base">${esc(CREATE.base)}</div>
+    <div class="adds"><b>Add</b>${CREATE.adds.map(([n, p]) => `<span>${esc(n)} $${money(p)}</span>`).join('')}</div>
+    <div class="leg"><b>V</b> vegetarian</div></div>` + foot;
 }
 const version1 = () => columnsVersion(BY_KIND, '1');
 const version2 = () => columnsVersion(BY_SAUCE, '2');
